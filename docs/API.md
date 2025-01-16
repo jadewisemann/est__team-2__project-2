@@ -26,6 +26,7 @@ const API_URL = '...'
 async function getMoviesInfo(title, year = '', page = 1) {
   const res = await fetch(`${API_URL}&s=${title}&y=${year}&page=${page}`);
   const json = await res.json();
+}
 ```
 ### 결과 예시
 
