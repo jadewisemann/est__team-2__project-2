@@ -19,6 +19,12 @@ export const getSearchResult = async (title, year=``, page=1) => {
   return {...data.Search}
 }
 
+export const getSearchResultMore = async (title, year=``, page=1) => {
+  const data = await fetchAPI(`${API_URL}&s=${title}&y=${year}&page=${page}`);
+  return {...data.Search}
+}
+
+
 export const getMovieDetail = async (imdbID) => {
   return await fetchAPI(`${API_URL}&i=${imdbID}`);
 }

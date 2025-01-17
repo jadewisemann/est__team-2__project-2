@@ -16,13 +16,13 @@ class MovieCard extends HTMLElement {
     const poster = this.getAttribute(`poster`) || 'poster'
     
     this.innerHTML = `
-    <div class="movie-card">@this is movie card
-      <div class="movie-card__title">${title}</div>
-      <div class="movie-card__year">${year}</div>
-      <div class="movie-card__imdb-id">${imdbID}</div>
-      <div class="movie-card__type">${type}</div>
-      <img class="movie-card__poster" src=${poster} ></img>
-    </div>
+      <div class="movie-card">@this is movie card
+        <div class="movie-card__title">${title}</div>
+        <div class="movie-card__year">${year}</div>
+        <div class="movie-card__imdb-id">${imdbID}</div>
+        <div class="movie-card__type">${type}</div>
+        <img class="movie-card__poster" src=${poster} ></img>
+      </div>
     `
   }
 }

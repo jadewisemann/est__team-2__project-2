@@ -1,6 +1,5 @@
 
 import "/src/components/movie-card.js"
-// import "../components/movie-card.js"
 
 import { getSearchResult } from "/src/utils/fetch.js"
 
