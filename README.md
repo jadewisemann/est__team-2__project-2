@@ -70,7 +70,6 @@
   - 지식 관리
     - github wiki
   
-  - 
 
 ## 기능 요구사항
 
@@ -101,6 +100,7 @@
     - [ ] 다른 api 사용
   - [ ] 로그인 (oAuth w.Fire Base)
   - [ ] 관심 목록 (localStorage or indexed db)
+  - [ ] 메세지 및 언어 분리 ⇒ i18n 대응
 
 ## 데이터 흐름
 
