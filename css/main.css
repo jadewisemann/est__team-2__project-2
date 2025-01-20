@@ -90,6 +90,12 @@ table {
   font-weight: 400;
 }
 
+.text__previews--title {
+  color: #ffffff;
+  font-size: 6.4rem;
+  font-weight: 600;
+}
+
 .tag__previews {
   display: inline-block;
   padding: 0 1.5rem;
