@@ -1,0 +1,143 @@
+/*==========================================
+  Reset Styles
+==========================================*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/*==========================================
+	accessibility 
+==========================================*/
+.a11y-hidden {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip: rect(1px, 1px, 1px, 1px);
+}
+
+/*==========================================
+	misc
+==========================================*/
+
+/* set: 1rem = 10px */
+html {
+  font-size: 62.5%;
+  /* overflow-x: hidden; */
+}
+body {
+  font-size: 1rem;
+}
+
+/* prevent horizontal scroll */
+html, body {
+	width: 100%;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+    --white-color: #ffffff;
+    --black-color: #000000;
+    --primary-color: #3887FF;
+  
+    --gray1-color: #999999;
+    --gray2-color: #717171;
+    --gray3-color: #262626;
+    --gray4-color: #1A1A1A;
+    --gray5-color: #141414;
+  
+    /* 글꼴 설정 */
+    --default-font: "Roboto";
+    --deco-font: "Raleway", serif;
+  }
+  
+  /* 글꼴 크기 설정 */
+  body {
+    font-size: 62.5%; /* 1rem = 10px */
+  }
+  
+  .xsmall-font {
+    font-size: 1.4rem; /* 14px */
+  }
+  
+  .small-font {
+    font-size: 1.6rem; /* 16px */
+  }
+  
+  .medium-font {
+    font-size: 1.8rem; /* 18px */
+  }
+  
+  .large-font {
+    font-size: 2rem; /* 20px */
+  }
+  
+  .xlarge-font {
+    font-size: 2.2rem; /* 22px */
+  }
+  
+  .xxlarge-font {
+    font-size: 2.4rem; /* 24px */
+  }
+  
+  .h3-font {
+    font-size: 3rem; /* 30px */
+  }
+  
+  .huge-font {
+    font-size: 6.4rem; /* 64px */
+  }
+  
+  .great-font {
+    font-size: 8rem; /* 80px */
+  }
+  
+  /* 줄 간격 설정 */
+  body {
+    line-height: 1.4;}
+
+
