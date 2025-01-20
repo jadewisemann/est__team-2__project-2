@@ -1,22 +1,27 @@
 @import '../variables'; // 변수 파일 임포트
 
 .text__detail--title{
-    color: $gray1-color;
-    font-size: $medium-font-size;
+    color: $color-gray1;
+    font-size: $font-m;
     font-weight: 400;
 }
 .text__detail--contents{
-    color: $white-color;
-    font-size: $large-font-size;
+    color: $color-white;
+    font-size: $font-l;
     font-weight: 400;
+}
+.text__previews--title{
+    color: $color-white;
+    font-size: $font-huge;
+    font-weight: 600;
 }
 .tag__previews{
     display: inline-block;
     padding: 0 1.5rem;
-    color: $white-color;
-    font-size: $small-font-size;
+    color: $color-white;
+    font-size: $font-s;
     font-weight: 400;
-    border: 1px solid $white-color;
+    border: 1px solid $color-white;
     border-radius: .5rem;
-    background-color: $black-color;
+    background-color: $color-black;
 }
