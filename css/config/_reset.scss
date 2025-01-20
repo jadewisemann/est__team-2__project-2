@@ -7,7 +7,7 @@
 
 /* 기본 폰트 크기 설정 */
 html {
-    font-size: $set-font-size; // 62.5%; // 1rem = 10px 설정
+    font-size: $font-set; // 62.5%; // 1rem = 10px 설정
 }
 
 /* 모든 요소의 기본 마진과 패딩을 제거 */
@@ -36,8 +36,8 @@ footer, header, hgroup, main, menu, nav, section {
 
 /* 기본 폰트 스타일 초기화 */
 body {
-    line-height: $normal-line-height; // 줄 높이를 설정
-    font-family: $default-font; // 기본 폰트 설정
+    line-height: $line-height-normal; // 줄 높이를 설정
+    font-family: $font-family-default; // 기본 폰트 설정
 }
 
 /* 링크 스타일 초기화 */
