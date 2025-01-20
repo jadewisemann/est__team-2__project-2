@@ -1,0 +1,22 @@
+@import '../variables'; // 변수 파일 임포트
+
+.text__detail--title{
+    color: $gray1-color;
+    font-size: $medium-font-size;
+    font-weight: 400;
+}
+.text__detail--contents{
+    color: $white-color;
+    font-size: $large-font-size;
+    font-weight: 400;
+}
+.tag__previews{
+    display: inline-block;
+    padding: 0 1.5rem;
+    color: $white-color;
+    font-size: $small-font-size;
+    font-weight: 400;
+    border: 1px solid $white-color;
+    border-radius: .5rem;
+    background-color: $black-color;
+}
