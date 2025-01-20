@@ -18,7 +18,6 @@ class HeroSliderSlide extends HTMLElement {
     const plot  = this.getAttribute(`plot`) || 'plot'
     const imdbID  = this.getAttribute(`imdbID`) || 'imdbID'
     
-    console.log(imdbID)
     this.shadowRoot.innerHTML = /*html*/`
         this is hero slider slide
       <div class="section--hero--container">
