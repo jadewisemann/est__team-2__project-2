@@ -47,6 +47,7 @@
         <section>
             <h2> movie name </h2>
         </section>
+<<<<<<< Updated upstream
 
         <section>
             <div class="card">
@@ -54,8 +55,43 @@
             </div>
         </section>
         <section> 
+=======
+>>>>>>> Stashed changes
 
+        <!-- movie card -->
+        <section> 
+          <div class="movie-card">
+            <!-- poster -->
+            <img class="movie-card__poster" src="" alt="">
+            <h3 class="movie-card__title">title</h3>
+            <div class="movie-card__rate">rating</div>
+          </div>
         </section>
+
+        <!-- rating--stars -->
+        <section>
+            <div class="ratings rating--stars">
+
+            </div>
+            <script>
+                const score = parseInt(this.getAttribute('score') || '0', 10)
+                const maxStars = 5
+                const filledStars = Math.min(score, maxStars); // 굳이 싶긴함
+                const stars = '★'.repeat(filledStars) + '☆'.repeat(maxStars - filledStars);
+            </script>
+        </section>
+
+        <!-- movie card W.rank -->
+        <section> 
+            <div class="movie-card--ranked">
+              <!-- poster -->
+              <img src="" alt="">
+              <h3 class="a11y-hidden">title</h3>
+              <div>rank</div>
+            </div>
+          </section>
+  
+
     </main>
 </body>
     <style>
