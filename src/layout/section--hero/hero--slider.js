@@ -3,13 +3,6 @@
 // module
 import './hero--slider--slide.js'
 
-// utils
-// import '/src/utils/fetch.js' 
-import { getMovieDetailHiRes } from '../../utils/fetch.js'
-
-// data
-import { heroSectionMovies } from '/asset/data/index.js';
-
 class HeroSlider extends HTMLElement {
   constructor() {
     super()
@@ -20,24 +13,37 @@ class HeroSlider extends HTMLElement {
     this.render()
   }
   
+  async getData() {
+    try {
+      const response = await fetch('/asset/data/tmdb-result.json');
+      const { "image-url": imageURL, results } = await response.json();
+      return { imageURL, results }
+    } catch (error) {
+      console.error('Error fetching or generating slides:', error);
+      return { imageURL: '', results: [] }
+    }
+  }
+
+  async generateSlides() {
+    const { imageURL, results } = await this.getData();
+    
+    return results.map(result => /*html*/ `
+      <swiper-slide>
+        <hero--slider--slide
+          poster="${imageURL}${result.poster_path}"
+          backdrop="${imageURL}${result.backdrop_path}"
+          title="${result.title}"
+          plot="${result.overview}"
+          imdbID="${result.id}">
+        </hero--slider--slide>
+      </swiper-slide>
+    `).join('');
+  }
 
   async render() {
-
-    const movieDetails = await Promise.all(heroSectionMovies.map(movieID => getMovieDetailHiRes(movieID)));
+    const slides = await this.generateSlides();
     
-    const slides = movieDetails.map(data => {
-      return (/*html*/`
-        <swiper-slide>
-          <hero--slider--slide
-            poster="${data.Poster}"
-            title="${data.Title}"
-            plot="${data.Plot}"
-            imdbID="${data.imdbID}"
-          />
-        </swiper-slide>
-      `);
-    }).join('');
-
+    // add to shadow root
     this.shadowRoot.innerHTML = /*html*/`
       this is hero slider
       <swiper-container 
@@ -53,6 +59,7 @@ class HeroSlider extends HTMLElement {
         ${slides}
       </swiper-container>
     `
+    
     
     const style = document.createElement('style')
     style.innerHTML = /*css*/`

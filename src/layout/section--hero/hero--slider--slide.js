@@ -14,6 +14,7 @@ class HeroSliderSlide extends HTMLElement {
   render() {  
     
     const poster = this.getAttribute(`poster`) || 'poster'
+    const backdrop = this.getAttribute(`backdrop`) || 'backdrop'
     const title  = this.getAttribute(`title`) || 'title'
     const plot  = this.getAttribute(`plot`) || 'plot'
     const imdbID  = this.getAttribute(`imdbID`) || 'imdbID'
@@ -33,7 +34,7 @@ class HeroSliderSlide extends HTMLElement {
         width: 1000px!important;
         border: 1px solid black;
         aspect-ratio: 2/1;
-        background: url(${poster}) no-repeat;
+        background: url(${backdrop}) no-repeat;
         background-size: cover;
         width: 100%;
       }

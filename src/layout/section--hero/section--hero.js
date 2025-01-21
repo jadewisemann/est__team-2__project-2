@@ -1,7 +1,3 @@
-/** 
- * slider-slide => slider => index
- * */
-
 import './hero--slider.js'
 
 class SectionHero extends HTMLElement {
@@ -14,7 +10,7 @@ class SectionHero extends HTMLElement {
   connectedCallback() {
     this.render()
   }
-  
+
   render() {
     
     // get attribute
