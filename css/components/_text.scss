@@ -1,23 +1,34 @@
 @import '../variables'; // 변수 파일 임포트
-
-.text__detail--title{
+// common
+h1, h2, h3, h4, h5, h6, strong, span{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.text--title__detail{
     color: $color-gray1;
     font-size: $font-m;
     font-weight: 400;
 }
-.text__detail--contents{
+.text--contents__detail{
     color: $color-white;
     font-size: $font-l;
     font-weight: 400;
 }
-.text__previews--title{
+.preview__title{
     color: $color-white;
     font-size: $font-huge;
     font-weight: 600;
 }
-.tag__previews{
+.preview__description{
+    color: $color-white;
+    font-size: $font-m;
+    font-weight: 400;
+    
+}
+.preview__tag{
     display: inline-block;
-    padding: 0 1.5rem;
+    padding: 0.3rem 1.5rem;
     color: $color-white;
     font-size: $font-s;
     font-weight: 400;
