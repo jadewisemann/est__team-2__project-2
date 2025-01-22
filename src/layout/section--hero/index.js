@@ -11,7 +11,6 @@ class SectionHero extends HTMLElement {
   }
 
   render() {
-
     this.innerHTML = /*html*/ `
     <div class="section--hero">
         <hero--slider> </hero--slider>
