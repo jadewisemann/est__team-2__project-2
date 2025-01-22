@@ -25,3 +25,19 @@
     border-radius: .5rem;
     background-color: $color-black;
 }
+
+
+.text__search{
+    display: flex;
+    flex-direction: column;
+    color: $color-white;
+    gap: 2.94rem;
+    font-size: $font-m;
+    font-weight: 700;
+    font-family:$font-family-default;
+    line-height: 150%;
+    
+    .text__search--result__val{
+        color: $color-primary;
+    }
+}

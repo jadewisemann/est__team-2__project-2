@@ -78,6 +78,51 @@ table {
   height: 3rem;
 }
 
+.btn-top {
+  width: 8rem;
+  height: 8rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem;
+  z-index: 1000;
+}
+.btn-top :active {
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
+.btn-viewmore {
+  width: 13.9rem;
+  height: 3.6rem;
+  font-size: 2.2rem;
+  line-height: 3.3rem;
+  color: #717171;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.btn-viewmore:active {
+  opacity: 0.8;
+}
+
+.btn-play {
+  padding: 1.4rem 2.4rem;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #3887FF;
+  color: #ffffff;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+.btn-play:active {
+  opacity: 0.8;
+  transition: 0.3s;
+}
+
 .text__detail--title {
   color: #999999;
   font-size: 1.8rem;
@@ -105,4 +150,104 @@ table {
   border: 1px solid #ffffff;
   border-radius: 0.5rem;
   background-color: #000000;
-}/*# sourceMappingURL=main.css.map */
+}
+
+.text__search {
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  gap: 2.94rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  font-family: "Roboto";
+  line-height: 150%;
+}
+.text__search .text__search--result__val {
+  color: #3887FF;
+}
+
+.gnb {
+  width: 100vw;
+  height: 7.4rem;
+  background-color: #000000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 15.5rem;
+}
+
+.gnb--logo {
+  width: 12.9664rem;
+  flex-shrink: 0;
+}
+.gnb--logo img {
+  width: 100%;
+  height: 100%;
+}
+
+.gnb--menu {
+  display: flex;
+  color: var(--gray1-color);
+  font-size: 1.8rem;
+  margin: 7.53rem;
+  gap: 3rem;
+  flex: 1;
+  font-family: "Roboto";
+}
+.gnb--menu a {
+  text-decoration: none;
+}
+.gnb--menu a:link {
+  color: #999999;
+}
+.gnb--menu a:visited {
+  color: #999999;
+}
+.gnb--menu a:hover {
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+.gnb--search {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.gnb--search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.gnb--search-button .hidden {
+  display: none;
+}
+
+.gnb--search--container {
+  display: flex;
+  align-items: center;
+  width: 0;
+  background-color: #000000;
+  color: #ffffff;
+  border-radius: 2.5rem;
+  transition: 0.3s ease;
+  right: 0;
+  overflow: hidden;
+}
+.gnb--search--container .active {
+  width: 36rem;
+  padding: 0.5rem 2rem;
+  border: 0.1rem solid #ffffff;
+}
+
+.gnb--search--input {
+  background-color: #000000;
+  width: 100%;
+  border: none;
+  font-size: 1.8rem;
+  color: #ffffff;
+  height: 2rem;
+  outline: none;
+}

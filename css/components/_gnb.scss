@@ -1,0 +1,89 @@
+@import '../variables'; // 변수 파일 임포트
+
+.gnb {
+    height: 7.4rem;
+    background-color: $color-black;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 9.69rem;
+}
+
+.gnb--logo {
+    width: 12.9664rem;
+    flex-shrink: 0;
+
+    img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.gnb--menu {
+    display: flex;
+    color: var(--gray1-color);
+    font-size: $font-m;
+    padding: 4.71rem;
+    gap: 3rem;
+    flex: 1;
+    font-family: $font-family-default;
+
+    li {
+        text-decoration: none;
+
+        &:hover {
+            color: $color-white;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+    }
+}
+
+.gnb--search {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.gnb--search-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+    .hidden {
+        display: none;
+    }
+}
+
+
+.gnb--search--container {
+    display: flex;
+    align-items: center;
+    width: 0;
+    background-color: $color-black;
+    color: $color-white;
+    border-radius: 2.5rem;
+    transition: .3s ease;
+    right: 0;
+    overflow: hidden;
+
+    .active {
+        width: 36rem;
+        padding: 0.5rem 2rem;
+        border: .1rem solid $color-white;
+    }
+}
+
+
+
+.gnb--search--input {
+    background-color: $color-black;
+    width: 100%;
+    border: none;
+    font-size: $font-m;
+    color: $color-white;
+    height: 2rem;
+    outline: none;
+}
