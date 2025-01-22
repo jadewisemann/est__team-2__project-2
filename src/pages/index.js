@@ -1,2 +1,3 @@
 // import internal module
-import "../layout/section--hero/section--hero.js"
+import "../layout/section--hero/index.js"
+
