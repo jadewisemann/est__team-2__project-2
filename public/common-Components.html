@@ -33,6 +33,7 @@
                 <div> staring </div>
             </div>
         </section>
+
         <section>
             <div class="detailcard--person">
                 <div class="detailcard--person__img">
@@ -44,10 +45,10 @@
                 </div>
             </div> 
         </section>
+
         <section>
             <h2> movie name </h2>
         </section>
-<<<<<<< Updated upstream
 
         <section>
             <div class="card">
@@ -55,42 +56,65 @@
             </div>
         </section>
         <section> 
-=======
->>>>>>> Stashed changes
 
         <!-- movie card -->
         <section> 
-          <div class="movie-card">
-            <!-- poster -->
-            <img class="movie-card__poster" src="" alt="">
-            <h3 class="movie-card__title">title</h3>
-            <div class="movie-card__rate">rating</div>
-          </div>
+            <div class="movie-card">
+                <!-- poster = dynamic -->
+                <img class="movie-card__poster" src="" alt="">
+                <h3 class="movie-card__title">title</h3>
+                <div class="movie-card__rate">★★★⯨☆
+                    <!-- <rating-stars/> -->
+                </div> 
+            </div>
         </section>
 
         <!-- rating--stars -->
         <section>
-            <div class="ratings rating--stars">
+            <div class="ratings rating--stars">★★★⯨☆</div>
 
-            </div>
             <script>
-                const score = parseInt(this.getAttribute('score') || '0', 10)
+                const attributeRating = 6.7
+                const score = parseInt(attributeRating || '0', 10)
                 const maxStars = 5
-                const filledStars = Math.min(score, maxStars); // 굳이 싶긴함
-                const stars = '★'.repeat(filledStars) + '☆'.repeat(maxStars - filledStars);
+
+                const filledStars = Math.floor(score)
+                const hasHalfStar = score - filledStars >= 0.5
+                const emptyStars = maxStars - filledStars - (hasHalfStar ? 1 : 0)
+
+                const stars = '★'.repeat(filledStars) + (hasHalfStar ? '⯨' : '') + '☆'.repeat(emptyStars);
+
+                const innerShadow = /*html*/`
+                <div class="rating--stars__container" >${stars}</div>`
             </script>
         </section>
 
         <!-- movie card W.rank -->
         <section> 
             <div class="movie-card--ranked">
-              <!-- poster -->
-              <img src="" alt="">
-              <h3 class="a11y-hidden">title</h3>
-              <div>rank</div>
+                <!-- poster = dynamic -->
+                <img src="movie-card--poster" alt="">
+                <h3 class="a11y-hidden">title</h3>
+                <div class="movie-card--rank">
+                    <img src="" alt="">
+                </div>
             </div>
-          </section>
+        </section>
   
+        <!-- section--recommendation list -->
+        <section class="section--recommendation">
+            <div class="section--title">list-title</div>
+            <!-- card -->
+
+            <script>
+                const movies = [];
+                const moviesHTML = movies.reduce((acc, movie) => acc + /*html*/`
+                    <movie-card poster="" title="" rating="">
+                        movie-card
+                    </movie-card>
+                `, "")
+            </script>
+        </section>
 
     </main>
 </body>
