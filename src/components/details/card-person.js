@@ -1,25 +1,49 @@
 class CardPerson extends HTMLElement{
     constructor() {
         super()
+        this.rendered = false; // 중복 렌더링 방지 플래그
     }
     connectedCallback(){
-        this.render()
+        if (!this.rendered) { // 처음 렌더링일 때만 실행
+            this.render();
+            this.rendered = true;
+        }
     }
     render(){
-        const attribute = this.getAttribute(`attribute`) || 'default value' 
+        this.classList.add('card')
 
-        this.innerHTML =`
-        <div class="card__person">
-            <div class="card__person--img">
-                <img src="https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201703%2F2017032220095332-8659845.jpg" alt="Profile picture">
+        //데이터 가져오기
+        const category = this.getAttribute('category') || ''
+        const imgUrl_tmdb = "https://image.tmdb.org/t/p/original"
+        const name = this.getAttribute('name')?.split(",") || []
+        const country = this.getAttribute('country')?.split(",") || []
+        const imgUrl = this.getAttribute('img-url')?.split(",") || []
+        const castJob = this.getAttribute('castJob')?.split(",") || []
+
+        const card = name.map((personName, index) => {
+            //category로 구분
+            let p_content = '';
+            if(category ==='director'){
+                p_content = `<p>${country[index] || "Unknown Country"}</p>`
+            }
+            else if(category ==='actor'){
+                p_content = `<p>${castJob[index] || "Unknown Job"}</p>`
+            }
+
+            return `
+            <div class="card__person">
+                <div class="card__person--img">
+                    ${imgUrl[index] ? `<img src="${imgUrl_tmdb}${imgUrl[index]}" alt="Profile picture">` : ""}
+                </div>
+                <div class="card__person--contents">
+                    <h5>${personName}</h5>
+                    ${p_content}
+                </div>
             </div>
-            <div class="card__person--contents">
-                <h5> name </h5>
-                <p> country </p>
-                <p> ${attribute} </p>
-            </div>
-        </div> 
-        `
+            `
+        }).join('')
+
+        this.innerHTML = card
     }
 }
 

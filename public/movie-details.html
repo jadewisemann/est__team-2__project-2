@@ -7,19 +7,14 @@
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-    <section> 
+    <div class="wrap">
         <div class="preview">
-            <div class="preview__contents">
-            </div>
-            <div class="preview__poster">
-            </div>
-            <div class="preview__poster--bg">
-            </div>
+            <details-preview></details-preview>
         </div>
-    </section>
-
-    <details-textbox></details-textbox>
-    <!-- <script src="../src/pages/movie-details.js"></script> -->
-    <script type="module" src="../src/components/details/details-textbox.js"></script>
+        <div class="textbox">
+            <details-textbox></details-textbox>
+        </div>
+    </div>
+    <script type="module" src="../src/components/details/details.js"></script>
 </body>
 </html>

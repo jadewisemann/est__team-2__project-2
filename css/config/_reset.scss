@@ -38,6 +38,7 @@ footer, header, hgroup, main, menu, nav, section {
 body {
     line-height: $line-height-normal; // 줄 높이를 설정
     font-family: $font-family-default; // 기본 폰트 설정
+    background-color: $color-black; //  배경색 검정으로 설정
 }
 
 /* 링크 스타일 초기화 */

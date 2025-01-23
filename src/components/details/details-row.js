@@ -1,18 +1,27 @@
+import './card-person.js'
+
 class DetailsRow extends HTMLElement {
-    constructor() {
-        super()
+    constructor() { //브라우저가 DOM을 평가할 때
+        super() //클래스 문법//HTMLElement의 상속 어쩌구 먼저 실행
     }
-    connectedCallback(){
+    connectedCallback(){ // 브라우저가 돔 트리에 부착할 때 실행
         this.render()
     }
     render(){
         const title = this.getAttribute('title') || ''
         const type = this.getAttribute('type') || 'text'
         const content = this.getAttribute('content') || ''
+        
+        const category = this.getAttribute('category') || ''
+        const name = this.getAttribute('name') || ''
+        const country = this.getAttribute('country') || ''
+        const imgUrl = this.getAttribute('img-url') || ''
+        const castJob = this.getAttribute('castJob') || ''
+
+        this.classList.add("details__row")        
+        
         let rowContent = ''
 
-        console.log(type);
-        
         if(type === 'text'){
             rowContent = `<p class="text--contents__detail">${content}</p>`
         }else if(type === 'list'){
@@ -26,16 +35,23 @@ class DetailsRow extends HTMLElement {
                 }
             </div>
             `
+        }else if(type ==='card-person'){
+
+            rowContent = `
+            <card-person
+                category="${category}"
+                name="${name}"
+                country="${country}"
+                castJob="${castJob}"
+                img-url="${imgUrl}"
+            ></card-person>`
         }else{
             rowContent = `???`
         }
 
-
         this.innerHTML=`
-        <div class="details__row">
             <h4 class="text--title__detail">${title}</h4>
             ${rowContent}
-        </div>
         `
     }
 }

@@ -38,6 +38,7 @@ footer, header, hgroup, main, menu, nav, section {
 body {
   line-height: 1.4;
   font-family: "Roboto";
+  background-color: #000000;
 }
 
 /* 링크 스타일 초기화 */
@@ -212,6 +213,14 @@ h1, h2, h3, h4, h5, h6, strong, span {
   flex-basis: 50%;
 }
 
+.card {
+  display: flex;
+  gap: 1rem;
+}
+.card > div {
+  flex-grow: 1;
+}
+
 .card__rating {
   display: flex;
   flex-direction: column;
@@ -269,10 +278,11 @@ h1, h2, h3, h4, h5, h6, strong, span {
   overflow: hidden;
   border-radius: 0.8rem;
 }
-.card__person--img .img {
+.card__person--img img {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  transform: translate(0, -13%);
 }
 
 .card__person--contents {
@@ -287,4 +297,8 @@ h1, h2, h3, h4, h5, h6, strong, span {
 .card__person--contents p {
   color: #999999;
   font-size: 1.8rem;
+}
+
+.wrap .textbox {
+  padding: 4.5rem 10rem;
 }/*# sourceMappingURL=main.css.map */
