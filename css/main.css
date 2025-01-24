@@ -65,6 +65,12 @@ table {
   width: 100%;
 }
 
+button:hover {
+  cursor: pointer;
+  box-shadow: inset 0 0 1rem rgba(0, 0, 0, 0.2);
+  opacity: 0.95;
+}
+
 .a11y-hidden {
   overflow: hidden;
   position: absolute;
@@ -260,6 +266,7 @@ h1, h2, h3, h4, h5, h6, strong, span {
   display: flex;
   gap: 1rem;
   align-items: center;
+  justify-content: flex-start;
   width: auto;
   height: auto;
   padding: 1.6rem;
@@ -309,15 +316,42 @@ h1, h2, h3, h4, h5, h6, strong, span {
   text-align: center;
   font-size: 18px;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 .swiper .swiper-button-prev, .swiper .swiper-button-next {
-  visibility: hidden;
   color: #ffffff;
   font-size: 2.2rem;
+  width: 56px;
+  height: 56px;
+  padding: 14px;
+  margin-top: 0;
+  border-radius: 8px;
+  border: 1px solid var(--Black-12, #1F1F1F);
+  background: var(--Black-06, #0F0F0F);
+  opacity: 0.8;
+  top: 50%;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: all 0.2s ease-in; /* 부드러운 애니메이션 추가 */
 }
-.swiper .swiper-wrapper:hover ~ .swiper-button-prev,
-.swiper .swiper-wrapper:hover ~ .swiper-button-next {
-  visibility: visible;
+.swiper .swiper-button-prev::after, .swiper .swiper-button-next::after {
+  content: none;
+}
+.swiper .swiper-button-prev .icon, .swiper .swiper-button-next .icon {
+  height: 28px;
+  width: 28px;
+}
+.swiper .swiper-button-prev .icon {
+  background: url("/asset/img/swiper-button-prev.svg");
+}
+.swiper .swiper-button-next .icon {
+  background: url("/asset/img/swiper-button-next.svg");
+}
+.swiper .swiper-button-next, .swiper .swiper-rtl .swiper-button-prev {
+  right: var(--swiper-navigation-sides-offset, 0);
+  left: auto;
+}
+.swiper .swiper-button-prev, .swiper .swiper-rtl .swiper-button-next {
+  left: var(--swiper-navigation-sides-offset, 0);
+  right: auto;
 }/*# sourceMappingURL=main.css.map */

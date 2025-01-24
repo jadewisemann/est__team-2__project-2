@@ -57,9 +57,8 @@ class DetailsRow extends HTMLElement {
                             ></card-person>`
                             ).join('')}
                         </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination"></div>
+                        <div class="swiper-button-next"><div class="icon"></div></div>
+                        <div class="swiper-button-prev"><div class="icon"></div></div>
                     </div>
                     `
             }else{
@@ -88,6 +87,12 @@ class DetailsRow extends HTMLElement {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
+            // on:{
+            //     init: function () {
+            //         const swiperButton = document.querySelector('.swiper-button-next');
+            //         console.log(swiperButton); // Swiper 초기화 후 버튼 로그 확인
+            //     },
+            // }
         });
     }
 }
