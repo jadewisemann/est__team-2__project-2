@@ -12,13 +12,13 @@ class CardPerson extends HTMLElement{
     render(){
         this.classList.add('card')
 
+        const imgUrl_tmdb = "https://image.tmdb.org/t/p/original"
         //데이터 가져오기
         const category = this.getAttribute('category') || ''
-        const imgUrl_tmdb = "https://image.tmdb.org/t/p/original"
+        const castJob = this.getAttribute('castJob')?.split(",") || []
         const name = this.getAttribute('name')?.split(",") || []
         const country = this.getAttribute('country')?.split(",") || []
-        const imgUrl = this.getAttribute('img-url')?.split(",") || []
-        const castJob = this.getAttribute('castJob')?.split(",") || []
+        const imgUrl = this.getAttribute('imgUrl')?.split(",") || []
 
         const card = name.map((personName, index) => {
             //category로 구분

@@ -299,6 +299,7 @@ h1, h2, h3, h4, h5, h6, strong, span {
   font-size: 1.8rem;
 }
 
-.wrap .textbox {
+.wrap__movie-details .textbox {
+  display: block;
   padding: 4.5rem 10rem;
 }/*# sourceMappingURL=main.css.map */

@@ -1,140 +1,116 @@
 import './details-row.js'
+import { escapeHTML } from '../../utils/escapeHTML.js'; // escapeHTML 함수 import
+
 class DetailsTextbox extends HTMLElement {
     constructor() {
         super()
-        this.imdb_id = null;
+    }
+    static get observedAttributes(){
+        return ['data']
     }
     connectedCallback(){
-        this.classList.add('details'); // 기본적인 초기 설정만 처리
-    }
-    async setImdbId(id) {
-        this.imdb_id = id;
-        await this.render()
-    }
-    async getOmdbApiData() {
-        const API_URL = 'http://www.omdbapi.com/?apikey=33c97183'
-        try {
-            const response = await fetch(`${API_URL}&i=${this.imdb_id}`)
-            if(!response.ok){
-                throw new Error("API 호출 실패")
-            }
-            return response.json()
-        } catch (error) {
-            console.error('문제발생',error);
-        }
-    }
-
-    async getTmdbApiPersonData() {
-        const API_KEY = {
-            method: 'GET',
-            headers: {
-                accept: 'application/json',
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZjQ5MGFjODg1NmYyZDljNmQ1NjhiZDRkZjExZjM4ZSIsIm5iZiI6MTczNzAzNjIxNi43MDg5OTk5LCJzdWIiOiI2Nzg5MTFiODQ1ZjI5NmY2MDExZDQzODIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.P3tFzr6KGwZgZ2VEPnh7M_39YP8WwK-qU0gCO8Ii3g8'
-            }
-        };   
-        
-        try {  // ***imdb_id로 TmdbApi에서 TmdbApi의 ID받아오기***
-        // [1] imdb_id로 요청보내서 응답받아옴
-            const response_inquiry_imdbId = await fetch(`https://api.themoviedb.org/3/find/${this.imdb_id}?external_source=imdb_id`, API_KEY)                             
-            
-            if(!response_inquiry_imdbId.ok){
-                throw new Error("API 호출 실패 : imdbId 조회")
-            }
-            const response_Tid = await response_inquiry_imdbId.json() // 응답받아 온 데이트를 json으로 변경
-            console.log(response_Tid);
-            
-            const Tid = await response_Tid.movie_results[0].id // 해당 id 값만 담는다
-
-        // [2] 얻어낸 id로 제작진 리스트 요청하여 응답받아옴
-            const response = await fetch(`https://api.themoviedb.org/3/movie/${Tid}/credits?`, API_KEY)
-            if(!response.ok){
-                throw new Error("API 호출 실패 : Tmdb - id 조회")
-            }
-            return response.json() // 데이터는 json으로 변경하여 리턴함
-        } catch (error) {
-            console.error('문제발생',error);
-        }
-    }
-        
-    escapeHTML(jsonString){
-        return jsonString
-        .replace(/&/g, '&amp;')   // & → &amp;
-        .replace(/"/g, '&quot;') // " → &quot;
-        .replace(/'/g, '&#39;')  // ' → &#39;
-        .replace(/</g, '&lt;')   // < → &lt;
-        .replace(/>/g, '&gt;');  // > → &gt;
-    }
-    
-    async render() {
-        if (!this.imdb_id) {
-            console.warn("render가 호출되었지만 IMDb ID가 설정되지 않았습니다.");
+        this.classList.add('textbox'); // 기본적인 초기 설정만 처리
+        // 데이터가 없으면 바로 렌더링하지 않고 기다림
+        const data = this.getAttribute('data');
+        if (!data) {
+            console.error('Error: No data attribute provided.');
+            this.innerHTML = '<p>Error: No data provided</p>';
             return;
         }
-
-        const dataOmdb = await this.getOmdbApiData()
-        const dataTmdb = await this.getTmdbApiPersonData()
-        
-        /* Omdb data 정리 */
-        console.log(dataOmdb)
-        const {Year, Language, Ratings, Genre, Director, Country} = dataOmdb
-        const language = Language ? Language.split(', ') : []
-        const genre = Genre ? Genre.split(', ') : []
-        const safeJSONLanguage = this.escapeHTML(JSON.stringify(language))
-        const safeJSONGenre = this.escapeHTML(JSON.stringify(genre))
-        const director = Director? Director.split(', ').map(name => ({name, country: Country})) : []
-        const country = director.map(country=>country.country)
+        // 데이터가 있을 경우 렌더링
+        this.render();
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === 'data' && newValue) {
+            this.render(); // 속성이 변경되면 재렌더링
+        }
+    }
     
-        /* Tmdb data 정리 */
-        console.log(dataTmdb);
-        const {cast, crew} = dataTmdb
-        const crewImgUrl = crew.filter(person => person.job === "Director").map(director => director.profile_path)
-        const crewName = crew.filter(person => person.job === "Director").map(name=> name.name)
-        const castName = cast.filter(person => person.popularity >= 15).map(name=> name.name)
-        const castImgUrl = cast.filter(person => person.popularity >= 15).map(name=> name.profile_path)
-        const castJob = cast.filter(person => person.popularity >= 15).map(name=> name.known_for_department)
-        
+    render() {
+        // data 속성 가져오기
+        const rawData = this.getAttribute('data');
+    
+        // JSON 파싱 시도
+        let parsedData = {};
+        try {
+            parsedData = JSON.parse(rawData);
+        } catch (error) {
+            console.error('Error: Invalid JSON data:', rawData);
+            this.innerHTML = '<p>Error: Invalid data format</p>';
+            return;
+        }
+    
+        // 데이터 구조 분해 및 기본값 설정
+        const {
+            year = 'Unknown Year',
+            language = [],
+            genre = [],
+            country = [],
+            crewName = [],
+            crewImgUrl = [],
+            castJob = [],
+            castName = [],
+            castImgUrl = [],
+        } = parsedData;
+    
+        // 데이터가 정상적으로 전달되었는지 로그 확인 (디버깅용)
+        console.log('Parsed Data:', parsedData);
+    
+        // 감독과 배우 데이터를 `DetailsRow`에서 사용할 수 있도록 배열로 변환
+        const crewData = crewName.map((name, index) => ({
+            name,
+            imgUrl: crewImgUrl[index] || '',
+            castJob: 'Crew Member',
+            country: country
+        }));
+        const castData = castName.map((name, index) => ({
+            name,
+            imgUrl: castImgUrl[index] || '',
+            castJob: castJob[index] || 'Actor',
+            country: country
+        }));
+
+        // HTML 생성
         this.innerHTML = `
+        <div class="details">
             <!-- 연도 -->
             <details-row 
-                title = "Released Year"
-                type = "text"
-                content = "${Year}"
-            ></details-row>
-
+                title="Year" 
+                type="text" 
+                content="${year}">
+            </details-row>
+            
             <!-- 언어 -->
-            <details-row
-                title = "Available Languages"
-                type = "list"
-                content = "${safeJSONLanguage}"
-            ></details-row>
-             
+            <details-row 
+                title="Languages" 
+                type="list" 
+                content='${JSON.stringify(language)}'>
+            </details-row>
+            
             <!-- 장르 -->
-            <details-row
-                title = "Gernes"
-                type = "list"
-                content = "${safeJSONGenre}"
-            ></details-row>
+            <details-row 
+                title="Genres" 
+                type="list" 
+                content='${JSON.stringify(genre)}'>
+            </details-row>
 
             <!-- 감독 -->
-            <details-row
-                title = "Director"
-                category = "director"
-                type = "card-person"
-                country ="${country}"
-                name="${crewName}"
-                img-url ="${crewImgUrl}"
-                ></details-row>
+            <details-row 
+                title="Crew" 
+                type="card-person" 
+                category="director"
+                content='${JSON.stringify(crewData)}'>
+            </details-row>
 
             <!-- 배우 -->
-            <details-row
-                title = "Actor"
-                category = "actor"
-                type = "card-person"
-                castJob ="${castJob}"
-                name="${castName}"
-                img-url ="${castImgUrl}"
-                ></details-row>
-        `
+            <details-row 
+                title="Cast" 
+                type="card-person" 
+                category="actor"
+                content='${JSON.stringify(castData)}'>
+            </details-row>
+        </div>
+        `;
     }
 }
 customElements.define('details-textbox',DetailsTextbox)
