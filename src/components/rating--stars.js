@@ -55,7 +55,12 @@ class RatingStars extends HTMLElement {
     style.innerHTML = /*css*/`
     
     .stars {
-      color: white;
+      color: #A5A5A5;
+      font-family: Manrope;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 150%; /* 33px */
     }`
     this.appendChild(style)
     
