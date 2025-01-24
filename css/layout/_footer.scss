@@ -1,1 +1,16 @@
-@import '../variables'; // 변수 파일 임포트
+@use '../abstract/variables' as *;
+footer{
+    background-color: $color-black;
+    padding: 2.7rem 10rem 10rem;
+    color: $color-gray2;
+    border-top: 1px solid $color-gray2-1;
+    div{
+        padding-right: 40%;
+        line-height: 2;
+        a{
+          &:hover{
+            color: #3887FF;
+          }
+        }
+    }
+}
