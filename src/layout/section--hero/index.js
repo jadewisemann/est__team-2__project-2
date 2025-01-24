@@ -20,7 +20,6 @@ class SectionHero extends HTMLElement {
     const style = document.createElement('style')
     style.innerHTML = /*css*/`
     .section--hero {
-      background-color: red;
       width: 100vw;
       height: 100vh;
     }
