@@ -93,15 +93,15 @@ class DetailsTextbox extends HTMLElement {
                 type="list" 
                 content='${JSON.stringify(genre)}'>
             </details-row>
-
+            
             <!-- 감독 -->
             <details-row 
-                title="Crew" 
-                type="card-person" 
-                category="director"
-                content='${JSON.stringify(crewData)}'>
+            title="Crew" 
+            type="card-person" 
+            category="director"
+            content='${JSON.stringify(crewData)}'>
             </details-row>
-
+            
             <!-- 배우 -->
             <details-row 
                 title="Cast" 

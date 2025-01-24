@@ -43,9 +43,11 @@ class DetailsRow extends HTMLElement {
             }else if(type ==='card-person'){
                 const items = JSON.parse(content)
                 const colClass = items.length <= 2 ? 'col--list col-2' : 'col--list'
+                // <div class="${colClass} swiper mySwiper">
                 rowContent = `
-                    <div class="${colClass}">
-                    ${items.map(item => `
+                    <div class="swiper mySwiper ${colClass}">
+                        <div class="swiper-wrapper card">
+                        ${items.map(item => `
                             <card-person
                                 category="${category}"
                                 castJob="${item.castJob || 'Unknown Job'}"
@@ -55,6 +57,9 @@ class DetailsRow extends HTMLElement {
                             ></card-person>`
                             ).join('')}
                         </div>
+                        <div class="swiper-button-next"><div class="icon"></div></div>
+                        <div class="swiper-button-prev"><div class="icon"></div></div>
+                    </div>
                     `
             }else{
                 rowContent = `<p>Unknown Type</p>`
@@ -70,6 +75,25 @@ class DetailsRow extends HTMLElement {
             ${rowContent}
         </div>
         `
+
+        this.swiperInstance = new Swiper(".mySwiper", {
+            slidesPerView: 4.5,
+            spaceBetween: 10,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            // on:{
+            //     init: function () {
+            //         const swiperButton = document.querySelector('.swiper-button-next');
+            //         console.log(swiperButton); // Swiper 초기화 후 버튼 로그 확인
+            //     },
+            // }
+        });
     }
 }
 customElements.define('details-row',DetailsRow)

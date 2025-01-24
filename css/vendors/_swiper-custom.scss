@@ -1,0 +1,54 @@
+@import '../variables'; // 변수 파일 임포트
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+  }
+  .swiper-button-prev, .swiper-button-next{
+    color: $color-white;
+    font-size: $font-xl;
+    width: 56px;
+    height: 56px;
+    padding: 14px;
+    margin-top: 0;
+    border-radius: 8px;
+    border: 1px solid var(--Black-12, #1F1F1F);
+    background: var(--Black-06, #0F0F0F);
+    opacity: .8;
+    top: 50%;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: all 0.2s ease-in; /* 부드러운 애니메이션 추가 */
+    &::after {
+      content: none;
+    }
+    .icon {
+      height: 28px;
+      width: 28px;
+    }
+  }
+  .swiper-button-prev{
+    .icon {
+      background: url("/asset/img/swiper-button-prev.svg");
+    }
+  }
+  .swiper-button-next{
+    .icon {
+      background: url("/asset/img/swiper-button-next.svg");
+    }
+  }
+
+  .swiper-button-next, .swiper-rtl .swiper-button-prev {
+    right: var(--swiper-navigation-sides-offset, 0);
+    left: auto;
+  }
+  .swiper-button-prev, .swiper-rtl .swiper-button-next {
+    left: var(--swiper-navigation-sides-offset, 0);
+    right: auto;
+  }
+}

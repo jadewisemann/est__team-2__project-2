@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://kit.fontawesome.com/b6ec81ac5f.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -130,26 +131,109 @@
                 </div>
                 <div class="details__row">
                     <h4 class="text--title__detail">Director</h4>
-                    <div class="col--list col-2">
-                        <div class="card__person">
-                            <div class="card__person--img">
-                                <img src="https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201703%2F2017032220095332-8659845.jpg" alt="Profile picture">
-                            </div>
-                            <div class="card__person--contents">
-                                <h5> name </h5>
-                                <p> country </p>
-                            </div>
-                        </div> 
-                        <div class="card__person">
-                            <div class="card__person--img">
-                                <img src="https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201703%2F2017032220095332-8659845.jpg" alt="Profile picture">
-                            </div>
-                            <div class="card__person--contents">
-                                <h5> name </h5>
-                                <p> country </p>
-                            </div>
-                        </div> 
+                    <div class="col--list col -2 swiper mySwiper">
+                        <div class="swiper-wrapper">
+                            <div class="card__person swiper-slide">
+                                <div class="card__person--img">
+                                    <img src="https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201703%2F2017032220095332-8659845.jpg" alt="Profile picture">
+                                </div>
+                                <div class="card__person--contents">
+                                    <h5> name </h5>
+                                    <p> country </p>
+                                </div>
+                            </div> 
+                            <div class="card__person swiper-slide">
+                                <div class="card__person--img">
+                                    <img src="https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201703%2F2017032220095332-8659845.jpg" alt="Profile picture">
+                                </div>
+                                <div class="card__person--contents">
+                                    <h5> name </h5>
+                                    <p> country </p>
+                                </div>
+                            </div> 
+                            <div class="card__person swiper-slide">
+                                <div class="card__person--img">
+                                    <img src="https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201703%2F2017032220095332-8659845.jpg" alt="Profile picture">
+                                </div>
+                                <div class="card__person--contents">
+                                    <h5> name </h5>
+                                    <p> country </p>
+                                </div>
+                            </div> 
+                            <div class="card__person swiper-slide">
+                                <div class="card__person--img">
+                                    <img src="https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201703%2F2017032220095332-8659845.jpg" alt="Profile picture">
+                                </div>
+                                <div class="card__person--contents">
+                                    <h5> name </h5>
+                                    <p> country </p>
+                                </div>
+                            </div> 
+                            <div class="card__person swiper-slide">
+                                <div class="card__person--img">
+                                    <img src="https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201703%2F2017032220095332-8659845.jpg" alt="Profile picture">
+                                </div>
+                                <div class="card__person--contents">
+                                    <h5> name </h5>
+                                    <p> country </p>
+                                </div>
+                            </div> 
+                            <div class="card__person swiper-slide">
+                                <div class="card__person--img">
+                                    <img src="https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201703%2F2017032220095332-8659845.jpg" alt="Profile picture">
+                                </div>
+                                <div class="card__person--contents">
+                                    <h5> name </h5>
+                                    <p> country </p>
+                                </div>
+                            </div> 
+                            <div class="card__person swiper-slide">
+                                <div class="card__person--img">
+                                    <img src="https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201703%2F2017032220095332-8659845.jpg" alt="Profile picture">
+                                </div>
+                                <div class="card__person--contents">
+                                    <h5> name </h5>
+                                    <p> country </p>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="swiper-pagination"></div>
                     </div>
+                    <!-- Swiper JS -->
+                    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+                      <!-- Initialize Swiper -->
+                    <script>
+                    var swiper = new Swiper(".mySwiper", {
+                        slidesPerView: 5.5,
+                        spaceBetween: 30,
+                        pagination: {
+                            el: ".swiper-pagination",
+                            clickable: true,
+                        },
+                    });
+                    </script>
+                    <style>
+                        .swiper {
+                        width: 100%;
+                        height: 100%;
+                        }
+
+                        .swiper-slide {
+                        text-align: center;
+                        font-size: 18px;
+                        background: #fff;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        }
+
+                        .swiper-slide img {
+                        display: block;
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        }
+                    </style>
                 </div>
                 
 

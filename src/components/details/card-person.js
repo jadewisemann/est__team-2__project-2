@@ -10,7 +10,9 @@ class CardPerson extends HTMLElement{
         }
     }
     render(){
-        this.classList.add('card')
+        
+        this.classList.add('card__person')
+        this.classList.add('swiper-slide')
 
         const imgUrl_tmdb = "https://image.tmdb.org/t/p/original"
         //데이터 가져오기
@@ -31,7 +33,6 @@ class CardPerson extends HTMLElement{
             }
 
             return `
-            <div class="card__person">
                 <div class="card__person--img">
                     ${imgUrl[index] ? `<img src="${imgUrl_tmdb}${imgUrl[index]}" alt="Profile picture">` : ""}
                 </div>
@@ -39,12 +40,13 @@ class CardPerson extends HTMLElement{
                     <h5>${personName}</h5>
                     ${p_content}
                 </div>
-            </div>
             `
         }).join('')
 
         this.innerHTML = card
+
     }
 }
 
 customElements.define('card-person',CardPerson);
+

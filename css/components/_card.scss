@@ -1,6 +1,5 @@
 .card{
     display: flex;
-    gap: 1rem;
     & > div{
         flex-grow:1;
     }
@@ -48,6 +47,7 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+    justify-content: flex-start;
     width: auto;
     height: auto;
     padding: 1.6rem;
@@ -77,5 +77,6 @@
     p{
         color: $color-gray1;
         font-size: $font-m;
+        text-align: left;
     }
 }
