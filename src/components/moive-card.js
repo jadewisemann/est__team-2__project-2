@@ -30,9 +30,7 @@ class MovieCard extends HTMLElement {
       </div>
       <div class="movie-card__info-wrapper">
           <div class="movie-card__title">${title}</div>
-          <div class="movie-card__rating">
-            ${ratingScore}
-          </div>
+          <!-- <div class="movie-card__rating">${ratingScore}</div> -->
           <rating-stars score=${ratingScore}>
           </rating-stars>
       </div>
@@ -64,6 +62,10 @@ class MovieCard extends HTMLElement {
       font-style: normal;
       font-weight: 700;
       line-height: 150%; /* 33px */
+      /* ban linebreak */
+      white-space: nowrap;
+      overflow: hidden;         
+      text-overflow: ellipsis; 
     }
 
     .movie-card__rating {
