@@ -43,9 +43,11 @@ class DetailsRow extends HTMLElement {
             }else if(type ==='card-person'){
                 const items = JSON.parse(content)
                 const colClass = items.length <= 2 ? 'col--list col-2' : 'col--list'
+                // <div class="${colClass} swiper mySwiper">
                 rowContent = `
-                    <div class="${colClass}">
-                    ${items.map(item => `
+                    <div class="swiper mySwiper ${colClass}">
+                        <div class="swiper-wrapper card">
+                        ${items.map(item => `
                             <card-person
                                 category="${category}"
                                 castJob="${item.castJob || 'Unknown Job'}"
@@ -55,6 +57,10 @@ class DetailsRow extends HTMLElement {
                             ></card-person>`
                             ).join('')}
                         </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-pagination"></div>
+                    </div>
                     `
             }else{
                 rowContent = `<p>Unknown Type</p>`
@@ -70,6 +76,19 @@ class DetailsRow extends HTMLElement {
             ${rowContent}
         </div>
         `
+
+        this.swiperInstance = new Swiper(".mySwiper", {
+            slidesPerView: 4.5,
+            spaceBetween: 10,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
     }
 }
 customElements.define('details-row',DetailsRow)

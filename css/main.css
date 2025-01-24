@@ -153,7 +153,7 @@ h1, h2, h3, h4, h5, h6, strong, span {
 .preview .preview__contents {
   display: flex;
   flex-direction: column;
-  gap: 2.2rem;
+  gap: 3.2rem;
 }
 .preview .preview__contents .preview__labelgroup {
   display: flex;
@@ -209,13 +209,9 @@ h1, h2, h3, h4, h5, h6, strong, span {
 .details .details__row .col--list .preview__tag {
   border-color: #717171;
 }
-.details .details__row .col-2 > * {
-  flex-basis: 50%;
-}
 
 .card {
   display: flex;
-  gap: 1rem;
 }
 .card > div {
   flex-grow: 1;
@@ -297,9 +293,31 @@ h1, h2, h3, h4, h5, h6, strong, span {
 .card__person--contents p {
   color: #999999;
   font-size: 1.8rem;
+  text-align: left;
 }
 
 .wrap__movie-details .textbox {
   display: block;
   padding: 4.5rem 10rem;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.swiper .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper .swiper-button-prev, .swiper .swiper-button-next {
+  visibility: hidden;
+  color: #ffffff;
+  font-size: 2.2rem;
+}
+.swiper .swiper-wrapper:hover ~ .swiper-button-prev,
+.swiper .swiper-wrapper:hover ~ .swiper-button-next {
+  visibility: visible;
 }/*# sourceMappingURL=main.css.map */

@@ -1,6 +1,5 @@
 .card{
     display: flex;
-    gap: 1rem;
     & > div{
         flex-grow:1;
     }
@@ -77,5 +76,6 @@
     p{
         color: $color-gray1;
         font-size: $font-m;
+        text-align: left;
     }
 }

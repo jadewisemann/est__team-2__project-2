@@ -48,29 +48,29 @@ class DetailsPreview extends HTMLElement{
 
         this.innerHTML = `
         <div class="preview">
-                    <div class="preview__contents">
-                        <h2 class="preview__title">${title}</h2>
-                        <div class="preview__labelgroup">
-                    
-                            <img class="icon-years" src="${ratedUrl}" alt="" srcset="">
-                            ${
-                                parseGenre.map(item =>
-                                    `<span class="preview__tag">${item}</span>`
-                                ).join('')
-                            }             
-                        </div>
-                        <button type="button" class="btn previews__btn--watch"> 
-                            <i class="fa-solid fa-play"></i><span>Watch</span>
-                        </button>
-                        <p class="preview__description">${plot}</p>
-                    </div>
-                    <div class="preview__poster">
-                        <img src="${poster}" alt="movie poster">
-                    </div>
-                    <div class="preview__poster--bg">
-                        <img src="${poster}" alt="movie poster">
-                    </div>
+            <div class="preview__contents">
+                <h2 class="preview__title">${title}</h2>
+                <div class="preview__labelgroup">
+            
+                    <img class="icon-years" src="${ratedUrl}" alt="" srcset="">
+                    ${
+                        parseGenre.map(item =>
+                            `<span class="preview__tag">${item}</span>`
+                        ).join('')
+                    }             
                 </div>
+                <button type="button" class="btn previews__btn--watch"> 
+                    <i class="fa-solid fa-play"></i><span>Watch</span>
+                </button>
+                <p class="preview__description">${plot}</p>
+            </div>
+            <div class="preview__poster">
+                <img src="${poster}" alt="movie poster">
+            </div>
+            <div class="preview__poster--bg">
+                <img src="${poster}" alt="movie poster">
+            </div>
+        </div>
         `
     }
 }
