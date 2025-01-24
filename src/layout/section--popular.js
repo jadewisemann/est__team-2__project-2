@@ -2,7 +2,7 @@
 import '../components/card-section.js'
 
 // define custom element
-class SectionRecommendation extends HTMLElement {
+class SectionPopular extends HTMLElement {
   constructor() {
     super()
     this.data = null
@@ -18,17 +18,17 @@ class SectionRecommendation extends HTMLElement {
       const response = await fetch("/asset/data/data.json")
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
       const data = await response.json()
-      return data.recommendation
+      return data.popular
     } catch (error) {
       console.error(error)
       return null
     }
   }
   
-  updateCardSection = recommendation => {
+  updateCardSection = cardIDs => {
     const cardSection = this.querySelector('card-section');
     if (cardSection) {
-      cardSection.cardIDs = recommendation
+      cardSection.cardIDs = cardIDs
     }
   }
 
@@ -40,8 +40,8 @@ class SectionRecommendation extends HTMLElement {
   render = () => {
     // html
     this.innerHTML = /*html*/ `
-    <div class="section--recommendation">
-      <card-section title="Must - Watch Shows"></card-section> 
+    <div class="section--popular">
+      <card-section title="Today’s Movie TOP 20" ranked="true"></card-section> 
     </div>
     `
 
@@ -53,4 +53,4 @@ class SectionRecommendation extends HTMLElement {
   }
 }
 
-customElements.define('section--recommendation', SectionRecommendation);
+customElements.define('section--popular', SectionPopular);
