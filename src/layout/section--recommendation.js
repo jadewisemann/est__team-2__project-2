@@ -1,5 +1,4 @@
 // components
-// import './hero--slider.js'
 import '../components/card-section.js'
 
 // define custom element
@@ -38,7 +37,7 @@ class SectionRecommendation extends HTMLElement {
     if (recommendation) this.updateCardSection(recommendation)
   }
 
-  render() {
+  render = () => {
     // html
     this.innerHTML = /*html*/ `
     <div class="section--recommendation">
