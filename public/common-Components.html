@@ -5,53 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css">
+    <script src="https://kit.fontawesome.com/b6ec81ac5f.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <main>
         <section>
-            <button type="button" class="btn btn-previews__watch"> Watch </button>
+            <button type="button" class="btn previews__btn--watch"> 
+                <i class="fa-solid fa-play"></i><span>Watch</span>
+            </button>
         </section>
 
         <section>
-            <h4 class="text__detail--title">TEXT</h4>
+            <h4 class="text--title__detail">text--title__detail</h4>
         </section>
         <section>
-            <p class="text__detail--contents">text__detail--contents</p>
-        </section>
-
-        <section>
-            <h4 class="text__previews--title">text__previews--title</h4>
-        </section>
-        <section>
-            <span class="tag__previews">tag__previews</span>
+            <p class="text--contents__detail">text--contents__detail</p>
         </section>
 
-
         <section>
-            <div class="detailcard--rating">
-                <h5 class="detailcard--rating__title"></h5>
-                <div> staring </div>
+            <div class="card__rating">
+                <h5 class="card__rating--title">card__rating--title</h5>
+                <ul class="rating" data-rate="3">
+                    <li>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half"></i>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half"></i>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half"></i>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half"></i>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half"></i>
+                    </li>
+                    <li><span>4.5</span></li>
+                </ul>
             </div>
         </section>
+        
         <section>
-            <div class="detailcard--person">
-                <div class="detailcard--person__img">
-                    <img src="" alt="Profile picture">
+            <div class="card__person">
+                <div class="card__person--img">
+                    <img src="https://search.pstatic.net/common?type=b&size=3000&quality=100&direct=true&src=http%3A%2F%2Fsstatic.naver.net%2Fpeople%2Fportrait%2F201703%2F2017032220095332-8659845.jpg" alt="Profile picture">
                 </div>
-                <div class="detailcard--person__contents">
+                <div class="card__person--contents">
                     <h5> name </h5>
                     <p> country </p>
                 </div>
             </div> 
         </section>
+        
         <section>
-            <h2> movie name </h2>
+            <h2 class="preview__title">preview__title</h2>
         </section>
-
         <section>
-            <div class="card">
-                <img src="" alt="">
-            </div>
+            <p class="preview__description">preview__description</p>
+        </section>
+        <section>
+            <span class="preview__tag">preview__tag</span>
         </section>
         <section> 
             <button class="btn-top" onclick="window.scrollTo(0,0);">
@@ -72,9 +91,8 @@
             </button>
         </section>
         <section>
-            <div class="text__search">
-                <p class="text__search--result">program <span class="text__search--result__val">1</span></p>
-                <p class="text__search--must">Must - Watch Shows</p>
+            <div class="text--search">
+                <p class="text--search__result">program <span>1</span></p>
             </div>
         </section>
     </main>
