@@ -1,5 +1,5 @@
 // external module
-import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+import Swiper from '../../utils/swiper-utils.js'
 
 // internal module
 import "../../components/btn--paly-now.js"
@@ -7,6 +7,7 @@ import "../../components/btn--paly-now.js"
 class HeroSlider extends HTMLElement {
   constructor() {
     super()
+    
   }
 
   connectedCallback() {
@@ -45,31 +46,36 @@ class HeroSlider extends HTMLElement {
   }
   
   async render() {
+    // make uniqueID
+    const uniqueId = Math.random().toString(36).substring(2, 9);
+
+    // html
     const slides = await this.generateSlides();
     
     this.innerHTML = /*html*/`
-      <div class="swiper">
+      <div class="swiper swiper-${uniqueId}">
         <div class="swiper-wrapper">
         ${slides}
         </div>
 
         <div class="swiper-control--wrapper">
-          <div class="swiper-button-prev">
+          <div class="swiper-button-prev swiper-button-prev-${uniqueId}">
             <div class="icon"></div> 
           </div>
-          <div class="swiper-pagination"></div>
-          <div class="swiper-button-next">
+          <div class="swiper-pagination swiper-pagination-${uniqueId}"></div>
+          <div class="swiper-button-next swiper-button-next-${uniqueId}">
             <div class="icon"></div> 
           </div>
         </div>
       </div>
     `
     
+    // style
     const style = document.createElement('style')
     style.innerHTML = /*css*/`
-    .swiper {
-        width: 100%;
-        height: 100%;
+    .swiper-${uniqueId} {
+      width: 100%;
+      height: 100%;
     }
 
     .swiper-slide {
@@ -126,14 +132,14 @@ class HeroSlider extends HTMLElement {
         bottom: 20px;
     }
 
-    .swiper-pagination,
-    .swiper-button-prev,
-    .swiper-button-next {
+    .swiper-pagination-${uniqueId},
+    .swiper-button-prev-${uniqueId},
+    .swiper-button-next-${uniqueId} {
         position: relative;
     }
 
-    .swiper-button-prev,
-    .swiper-button-next{
+    .swiper-button-prev-${uniqueId},
+    .swiper-button-next-${uniqueId} {
       width: 56px;
       height: 56px;
       padding: 14px;
@@ -150,7 +156,7 @@ class HeroSlider extends HTMLElement {
       width: 28px;
     }
 
-    .swiper-button-prev {
+    .swiper-button-prev-${uniqueId} {
       margin-left: 100px;
       
       .icon {
@@ -158,7 +164,7 @@ class HeroSlider extends HTMLElement {
       }
     }
     
-    .swiper-button-next {
+    .swiper-button-next-${uniqueId} {
       margin-right: 100px;
       
       .icon {
@@ -166,12 +172,14 @@ class HeroSlider extends HTMLElement {
       }
     }
 
-    .swiper-pagination {
+    .swiper-pagination-${uniqueId} {
       margin-top: 28px;
       display: flex;
       justify-content: center;
       gap: 3px;
     }
+
+    /* swiper pagination */
     span.swiper-pagination-bullet  {
       width: 16px;
       height: 4px;
@@ -188,17 +196,17 @@ class HeroSlider extends HTMLElement {
     this.appendChild(style)    
 
     // swiper initialize
-    new Swiper('.swiper', {
+    new Swiper(`.swiper-${uniqueId}`, {
       slidesPerView: 1,
       spaceBetween: 0,
       loop: true,
       pagination: {
-        el: '.swiper-pagination',
+        el: `.swiper-pagination-${uniqueId}`,
         clickable: true,
       },
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: `.swiper-button-next-${uniqueId}`,
+        prevEl: `.swiper-button-prev-${uniqueId}`,
       },
     });
   }
