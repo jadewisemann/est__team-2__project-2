@@ -1,3 +1,10 @@
+.card{
+    display: flex;
+    gap: 1rem;
+    & > div{
+        flex-grow:1;
+    }
+}
 .card__rating{
     display: flex;
     flex-direction: column;
@@ -53,9 +60,10 @@
     flex-shrink: 0;
     overflow: hidden;
     border-radius: .8rem;
-    .img{
+    img{
         width: 100%;
         object-fit: cover;
+        transform: translate(0, -13%);
     }
 }
 .card__person--contents{
