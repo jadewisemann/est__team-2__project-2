@@ -79,6 +79,20 @@ button:hover {
   clip: rect(1px, 1px, 1px, 1px);
 }
 
+footer {
+  background-color: #000000;
+  padding: 2.7rem 10rem 10rem;
+  color: #717171;
+  border-top: 1px solid #2f2f2f;
+}
+footer div {
+  padding-right: 40%;
+  line-height: 2;
+}
+footer div a:hover {
+  color: #3887FF;
+}
+
 .btn {
   width: auto;
   height: 6.5rem;
