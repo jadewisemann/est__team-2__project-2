@@ -41,7 +41,6 @@ class RatingStars extends HTMLElement {
     const score = this.getAttribute('score')
     const parseScore = this.parseScore(score)
     const stars = this.changeStarScore(parseScore)
-    console.log('stars',stars)
 
     // html
     this.innerHTML = /*html*/ `
