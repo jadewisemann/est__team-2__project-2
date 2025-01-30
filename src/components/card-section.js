@@ -1,12 +1,20 @@
-// util
+// ************************
+// import
+// ************************
+
+// * util
 import { getMovieDetail } from "../utils/fetch.js" 
 import Swiper from '../utils/swiper-utils.js'
 
-// components
+// * components
 import './moive-card.js'
 
-// define custom element
+// ************************
+// define custom components
+// ************************
+
 class CardSection extends HTMLElement {
+  //* life call back functions
   constructor() {
     super()
     this._cardIDs = []
@@ -16,6 +24,8 @@ class CardSection extends HTMLElement {
     // this.render()
   }
 
+
+  //* properties => setter & getter
   set cardIDs(value) {
     this._cardIDs = value
     this.render()
@@ -25,19 +35,23 @@ class CardSection extends HTMLElement {
     return this._cardIDs
   }
 
+  //* main render function
   async render() {
-    // make uniqueID
+    //* make uniqueID, for swiper
     const uniqueId = Math.random().toString(36).substring(2, 9);
 
-    // getAttribute
+    //* getAttribute
     const sectionTitle = this.getAttribute('title') || 'Section Title';    
-
-    // set html
+    const isSectionRanked = Boolean(this.getAttribute('ranked')) || false;
+    
+    //* set html
     this.innerHTML = /*html*/`
     <div class="card-section">
       <h2 class="card-section__title">${sectionTitle}</h2>
       <div class="swiper swiper-${uniqueId} card-section__card-list">
-        <div class="swiper-wrapper"></div>
+        <div class="swiper-wrapper">
+          <!-- insert slide here -->
+        </div>
         <div class="swiper-button-prev swiper-button-prev-${uniqueId}">
           <div class="icon icon-${uniqueId}"></div>
         </div> 
@@ -47,7 +61,7 @@ class CardSection extends HTMLElement {
       </div>
     </div>
     `
-    // fetch data
+    //* fetch data, from api, using imdb id
     let cardMovieDetails = []
     try {
       cardMovieDetails = await Promise.all(
@@ -57,18 +71,20 @@ class CardSection extends HTMLElement {
       console.error(error)
     }
     
-    // rendering
+    //* render, from data fetch from above
     this.querySelector('.swiper-wrapper')
-      .innerHTML = cardMovieDetails.map(detail => /*html*/`
+      .innerHTML = cardMovieDetails.map((detail, index) => /*html*/`
         <movie-card
-          title="${detail.Title}"  
-          poster="${detail.Poster}"  
-          ratings='${JSON.stringify(detail.Ratings)}'
-          class= swiper-slide  
+          title= "${detail.Title}"  
+          poster= "${detail.Poster}"  
+          ratings= '${JSON.stringify(detail.Ratings)}'
+          ranked= "${isSectionRanked}"
+          ${isSectionRanked ? `rank="${index+1}"` :""}
+          class= "swiper-slide swiper-slide-${uniqueId}"
         ></movie-card>
       `).join('')
 
-    // swipper initialize
+    //* swipper initialize
     new Swiper(`.swiper-${uniqueId}`, {
       slidesPerView: 5,
       spaceBetween: 20,
@@ -79,57 +95,64 @@ class CardSection extends HTMLElement {
       },
     });
 
-       // set css
-       const style = document.createElement('style')
-       style.innerHTML = /*css*/`
-        .card-section {
-          width: 83vw;
-          margin: 0 auto 100px;
-        }
+    //* set css
+    const style = document.createElement('style')
+    style.innerHTML = /*css*/`
+    ${isSectionRanked 
+      ? `
+      .swiper-slide-${uniqueId} {
+        margin-bottom: 80px;
+      }`
+      : ""
+    }
+    .card-section {
+      width: 83vw;
+      margin: 0 auto 100px;
+    }
 
-        .card-section__title {
-          color: var(--Absolute-White, #FFF);
-          font-family: Manrope;
-          font-size: 30px;
-          font-style: normal;
-          font-weight: 700;
-          line-height: 150%; /* 45px */
-          margin: 25px 0;
-        }
+    .card-section__title {
+      color: var(--Absolute-White, #FFF);
+      font-family: Manrope;
+      font-size: 30px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 150%; /* 45px */
+      margin: 25px 0;
+    }
 
-        .swiper-slide {
-          padding: 0;
-        }
+    .swiper-slide {
+      padding: 0;
+    }
 
-        /* button */
-        .swiper-button-prev-${uniqueId},
-        .swiper-button-next-${uniqueId} {
-          width: 56px;
-          height: 56px;
-          padding: 14px;
-          border-radius: 8px;
-          border: 1px solid var(--Black-12, #1F1F1F);
-          background: var(--Black-06, #0F0F0F);
-          
-          &::after {
-            content: none;
-          }
-        }
-     
-        .icon-${uniqueId} {
-          height: 28px;
-          width: 28px;
-        }
-     
-        .swiper-button-prev-${uniqueId} .icon {
-          background: url("/asset/img/swiper-button-prev.svg");
-        }
-         
-        .swiper-button-next-${uniqueId} .icon {
-          background: url("/asset/img/swiper-button-next.svg");
-        } 
-       `
-       this.appendChild(style)
+    /* button */
+    .swiper-button-prev-${uniqueId},
+    .swiper-button-next-${uniqueId} {
+      width: 56px;
+      height: 56px;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid var(--Black-12, #1F1F1F);
+      background: var(--Black-06, #0F0F0F);
+      
+      &::after {
+        content: none;
+      }
+    }
+  
+    .icon-${uniqueId} {
+      height: 28px;
+      width: 28px;
+    }
+  
+    .swiper-button-prev-${uniqueId} .icon {
+      background: url("/asset/img/swiper-button-prev.svg");
+    }
+      
+    .swiper-button-next-${uniqueId} .icon {
+      background: url("/asset/img/swiper-button-next.svg");
+    } 
+    `
+    this.appendChild(style)
   }
 }
 
