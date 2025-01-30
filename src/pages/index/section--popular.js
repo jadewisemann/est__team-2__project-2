@@ -1,5 +1,5 @@
 // components
-import '../components/card-section.js'
+import '../../components/card-section.js'
 
 // define custom element
 class SectionPopular extends HTMLElement {

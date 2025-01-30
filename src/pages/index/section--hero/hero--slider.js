@@ -1,8 +1,8 @@
 // external module
-import Swiper from '../../utils/swiper-utils.js'
+import Swiper from '../../../utils/swiper-utils.js'
 
 // internal module
-import "../../components/btn--paly-now.js"
+import "../../../components/btn--paly-now.js"
 
 class HeroSlider extends HTMLElement {
   constructor() {
