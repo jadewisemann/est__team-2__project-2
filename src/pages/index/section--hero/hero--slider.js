@@ -5,15 +5,47 @@ import Swiper from '../../../utils/swiper-utils.js'
 import "../../../components/btn--paly-now.js"
 
 class HeroSlider extends HTMLElement {
+  //* life cycle call back
   constructor() {
     super()
-    
+    this._imageURL = ''
+    this._resutls = ''
+    this._flag = false
   }
 
   connectedCallback() {
-    this.render()
+    // this.render()
+  }
+
+  //* define, properties, setter  && getter
+  set imageURL(value) {
+    this._imageURL = value
+    this.checkFlag() && this.render()
   }
   
+  get imageURL()  {
+    return this._imageURL
+  }
+
+  set results(value) {
+    this._resutls = value
+    this.checkFlag() && this.render()
+  }
+
+  get results() {
+    return this._resutls
+  }
+  // check flag
+  checkFlag() {
+    if(this._flag) {
+      this._flag = false
+      return true
+    } else {
+      this._flag = true
+      return false 
+    }
+  }
+  //@
   async getData() {
     try {
       const response = await fetch('/asset/data/tmdb-result.json');
@@ -46,6 +78,7 @@ class HeroSlider extends HTMLElement {
   }
   
   async render() {
+
     // make uniqueID
     const uniqueId = Math.random().toString(36).substring(2, 9);
 
