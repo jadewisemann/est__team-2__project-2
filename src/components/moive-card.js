@@ -44,7 +44,7 @@ class MovieCard extends HTMLElement {
     this.innerHTML = /*html*/ `
     <div class="movie-card">
       <div class="movie-card__poster" style="
-        background: url(${poster}) no-repeat;
+        background: url(${poster}) no-repeat center center;
         background-size: cover;
       "></div>
       ${isCardRanked
