@@ -18,24 +18,19 @@ class HeroSlider extends HTMLElement {
   }
 
   //* define, properties, setter  && getter
+  get imageURL()  { return this._imageURL }
   set imageURL(value) {
     this._imageURL = value
     this.checkFlag() && this.render()
   }
-  
-  get imageURL()  {
-    return this._imageURL
-  }
 
+  get results() { return this._resutls }
   set results(value) {
     this._resutls = value
     this.checkFlag() && this.render()
   }
 
-  get results() {
-    return this._resutls
-  }
-  // check flag
+  // check flag => to prevent unneccesary redering
   checkFlag() {
     if(this._flag) {
       this._flag = false
@@ -45,20 +40,10 @@ class HeroSlider extends HTMLElement {
       return false 
     }
   }
-  //@
-  async getData() {
-    try {
-      const response = await fetch('/asset/data/tmdb-result.json');
-      const { "image-url": imageURL, results } = await response.json();
-      return { imageURL, results }
-    } catch (error) {
-      console.error('Error fetching or generating slides:', error);
-      return { imageURL: '', results: [] }
-    }
-  }
 
   async generateSlides() {
-    const { imageURL, results } = await this.getData();
+    const imageURL  = this._imageURL
+    const results  = this._resutls  
     // const poster = `${imageURL}${results.poster_path}`
     const linearGradient = "linear-gradient(0deg, #141414 0%, rgba(20, 20, 20, 0.00) 100%)"
     return results.map(result => /*html*/ `
