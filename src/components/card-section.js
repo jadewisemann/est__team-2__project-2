@@ -1,50 +1,66 @@
-// ************************
-// import
-// ************************
-
-// * util
+//* import, util
 import { getMovieDetail } from "../utils/fetch.js" 
 import Swiper from '../utils/swiper-utils.js'
 
-// * components
-import './moive-card.js'
+//* import, components
+import './movie-card.js'
 
-// ************************
-// define custom components
-// ************************
-
+//* define, custom-elements
 class CardSection extends HTMLElement {
-  //* life call back functions
   constructor() {
     super()
     this._cardIDs = []
   }
-  
+
   connectedCallback() {
     // this.render()
   }
 
-
-  //* properties => setter & getter
+  //* property,  setter & getter
+  get cardIDs() { return this._cardIDs }
   set cardIDs(value) {
     this._cardIDs = value
     this.render()
   }
   
-  get cardsIDs() {
-    return this._cardIDs
+  //* methods
+  fetchData = async () => {
+    try {
+      return await Promise.all(
+        this._cardIDs.map(async (cardID) => await getMovieDetail(cardID))
+      )
+    } catch (error) {
+      console.error(error);
+      return []
+    }
   }
+  
+  getMovieCards = async (uniqueId, isSectionRanked="", isHorizontal="") => {
+    const cardMovieDetails = await this.fetchData();
+    return cardMovieDetails.map((detail, index) => /*html*/`
+      <movie-card
+        title="${detail.Title}"  
+        poster="${detail.Poster}"  
+        ratings='${JSON.stringify(detail.Ratings)}'
+        ranked="${isSectionRanked}"
+        ${isSectionRanked ? `rank="${index+1}"` : ""}
+        class="swiper-slide swiper-slide-${uniqueId}"
+        horizontal = ${isHorizontal}
+      ></movie-card>
+    `).join('');
+  }
+  
 
-  //* main render function
-  async render() {
-    //* make uniqueID, for swiper
-    const uniqueId = Math.random().toString(36).substring(2, 9);
+  render = async () => {
+    //* make, uniqueID, for swiper
+    const uniqueId = Math.random().toString(36).substring(2, 9)
 
-    //* getAttribute
-    const sectionTitle = this.getAttribute('title') || 'Section Title';    
-    const isSectionRanked = Boolean(this.getAttribute('ranked')) || false;
+    //* get, Attribute
+    const sectionTitle    = this.getAttribute('title') || 'Section Title'    
+    const isSectionRanked = Boolean(this.getAttribute('ranked')) || false
+    const isHorizontal    = Boolean(this.getAttribute('horizontal')) || false
     
-    //* set html
+    //* set, initial html
     this.innerHTML = /*html*/`
     <div class="card-section">
       <h2 class="card-section__title">${sectionTitle}</h2>
@@ -61,30 +77,11 @@ class CardSection extends HTMLElement {
       </div>
     </div>
     `
-    //* fetch data, from api, using imdb id
-    let cardMovieDetails = []
-    try {
-      cardMovieDetails = await Promise.all(
-        this._cardIDs.map(async cardID => await getMovieDetail(cardID))
-      )
-    } catch (error) {
-      console.error(error)
-    }
-    
-    //* render, from data fetch from above
-    this.querySelector('.swiper-wrapper')
-      .innerHTML = cardMovieDetails.map((detail, index) => /*html*/`
-        <movie-card
-          title= "${detail.Title}"  
-          poster= "${detail.Poster}"  
-          ratings= '${JSON.stringify(detail.Ratings)}'
-          ranked= "${isSectionRanked}"
-          ${isSectionRanked ? `rank="${index+1}"` :""}
-          class= "swiper-slide swiper-slide-${uniqueId}"
-        ></movie-card>
-      `).join('')
+    //* fetch & insert
+    const movieCards = await this.getMovieCards(uniqueId, isSectionRanked, isHorizontal);
+    this.querySelector('.swiper-wrapper').innerHTML = movieCards 
 
-    //* swipper initialize
+    //* swiper initialize
     new Swiper(`.swiper-${uniqueId}`, {
       slidesPerView: 5,
       spaceBetween: 20,
@@ -156,4 +153,4 @@ class CardSection extends HTMLElement {
   }
 }
 
-customElements.define('card-section', CardSection);
+customElements.define('card-section', CardSection)

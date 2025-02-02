@@ -24,35 +24,51 @@ class MovieCard extends HTMLElement {
       ? parseRating
       : [{"Source": "N/A", "Value": "N/A"}]
     const { "Source": ratingSource , "Value": ratingScore } = safeRatings[0]
-
+    const isHorizontal = this.getAttribute('horizontal') === 'true' ? true : false
 
     //* set, html
-    //* optional html 
+    //* optional html  => info wrapper 
     const notRankedInnerInfoWrapper = /*html*/`
-    <div class="movie-card__info-wrapper">
-      <div class="movie-card__title">${title}</div>
-      <!-- <div class="movie-card__rating">${ratingScore}</div> -->
-      <rating-stars score=${ratingScore}></rating-stars>
-    </div>
-    `
-    const rankedInnerInfoWrapper = /*html*/`
-    <div class="movie-card__info-wrapper">
-      <div class="movie-card__ranked">${rank}</div>
-    </div>
+      <div class="movie-card__info-wrapper">
+        <div class="movie-card__title">${title}</div>
+        <!-- <div class="movie-card__rating">${ratingScore}</div> -->
+        <rating-stars score=${ratingScore}></rating-stars>
+      </div>
     `
 
-    this.innerHTML = /*html*/ `
-    <div class="movie-card">
-      <div class="movie-card__poster" style="
+    const rankedInnerInfoWrapper = /*html*/`
+      <div class="movie-card__info-wrapper">
+        <div class="movie-card__ranked">${rank}</div>
+      </div>
+    `
+
+    //* optional html  =>  card poster 
+    const horizontalPoster = /*html*/`
+      <div class="movie-card__poster--horizontal" style="
+      background: url(${poster}) no-repeat center center;
+      background-size: cover;
+      "></div>
+    `
+    //* vertical 
+    const verticalPoster = /*html*/`
+      <div class="movie-card__poster--vertical" style="
         background: url(${poster}) no-repeat center center;
         background-size: cover;
       "></div>
-      ${isCardRanked
-        ? rankedInnerInfoWrapper
-        : notRankedInnerInfoWrapper
-      }
-    </div>
     `
+
+    this.innerHTML = /*html*/`
+      <div class="movie-card">
+        ${ isHorizontal 
+          ? horizontalPoster
+          : verticalPoster
+        }
+        ${ isCardRanked
+          ? rankedInnerInfoWrapper
+          : notRankedInnerInfoWrapper
+        }
+      </div>
+    ` 
 
     // css
     const style = document.createElement('style')
@@ -60,9 +76,13 @@ class MovieCard extends HTMLElement {
     .movie-card {
       width: 100%;
     } 
-    .movie-card__poster {
+    .movie-card__poster--vertical {
       width: 100%;
       aspect-ratio: 2/3;
+    }
+    .movie-card__poster--horizontal {
+      width: 100%;
+      aspect-ratio: 3/2;
     }
     .movie-card__info-wrapper {
       display: flex;
