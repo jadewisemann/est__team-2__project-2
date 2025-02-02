@@ -1,5 +1,5 @@
 //* import, components
-import './rating--stars.js'
+import './rating-stars.js'
 
 //* define, custom element
 class MovieCard extends HTMLElement {
@@ -37,7 +37,7 @@ class MovieCard extends HTMLElement {
         <div class="movie-card__title">${title}</div>
         <!-- <div class="movie-card__rating">${ratingScore}</div> -->
         ${isRating || !isHorizontal /*html*/
-          ? `<rating-stars score=${ratingScore}></rating-stars>`
+          ? `<rating-stars rating-score='${ratingScore}' rating-source='${ratingSource}'  ratings='${JSON.stringify(safeRatings)}'></rating-stars>`
           : ""
         }
       </div>
@@ -77,7 +77,7 @@ class MovieCard extends HTMLElement {
       </div>
     ` 
 
-    //* js
+    //* add click 
     this.querySelector('.movie-card__poster').addEventListener('click', () => {
       window.location.href = `movie-detail.html?id=${imdbID}`;
     })
