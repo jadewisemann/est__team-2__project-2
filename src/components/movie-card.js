@@ -14,24 +14,49 @@ class MovieCard extends HTMLElement {
 
   //* define render function
   render() {
-    //* get attribute 
+    // attribute
+    //> get attribute
     const title = this.getAttribute('title') || 'title'
     const poster = this.getAttribute('poster') || 'poster'
     const isHorizontal = this.getAttribute('horizontal') === 'true' ? true : false
     const imdbID = this.getAttribute('imdb-id') || ""
-    // rating
+    
+    // attribute > rating
     const isRating = this.getAttribute('is-rating') === 'true' ? true : false
     const parseRating = JSON.parse(this.getAttribute('ratings') || '[]')
     const safeRatings =  parseRating.length
       ? parseRating
       : [{"Source": "N/A", "Value": "N/A"}]
     const { "Source": ratingSource , "Value": ratingScore } = safeRatings[0]
-    // rank
+    
+    // attribute > rating
     const isCardRanked = this.getAttribute('ranked') === 'true' ? true : false
     const rank = this.getAttribute('rank')
 
-    //* set, html
-    //* optional html  => info wrapper 
+    // html
+    //> poster
+    const horizontalPoster = /*html*/`
+      <div class="movie-card__poster movie-card__poster--horizontal" style="
+      background: url(${poster}) no-repeat center center;
+      background-size: cover;
+      "></div>
+    `
+
+    const verticalPoster = /*html*/`
+      <div class="movie-card__poster movie-card__poster--vertical" style="
+        background: url(${poster}) no-repeat center center;
+        background-size: cover;
+      "></div>
+    `
+    
+    const posterWrapper = /*html*/`
+      <div class="movie-card__poster-wrapper">
+        ${ isHorizontal ? horizontalPoster : verticalPoster }
+        <div class="movie-card__heart">&#x2661;</div>
+      </div>
+    `
+
+    // html > info wrapper 
     const notRankedInnerInfoWrapper = /*html*/`
       <div class="movie-card__info-wrapper">
         <div class="movie-card__title">${title}</div>
@@ -49,27 +74,10 @@ class MovieCard extends HTMLElement {
       </div>
     `
 
-    //* optional html  =>  card poster 
-    const horizontalPoster = /*html*/`
-      <div class="movie-card__poster movie-card__poster--horizontal" style="
-      background: url(${poster}) no-repeat center center;
-      background-size: cover;
-      "></div>
-    `
-    //* vertical 
-    const verticalPoster = /*html*/`
-      <div class="movie-card__poster movie-card__poster--vertical" style="
-        background: url(${poster}) no-repeat center center;
-        background-size: cover;
-      "></div>
-    `
-
+    // set, html
     this.innerHTML = /*html*/`
       <div class="movie-card">
-        ${ isHorizontal 
-          ? horizontalPoster
-          : verticalPoster
-        }
+        ${posterWrapper}
         ${ isCardRanked
           ? rankedInnerInfoWrapper
           : notRankedInnerInfoWrapper
@@ -77,17 +85,66 @@ class MovieCard extends HTMLElement {
       </div>
     ` 
 
-    //* add click 
+    //* add poster click event listener
     this.querySelector('.movie-card__poster').addEventListener('click', () => {
       window.location.href = `movie-detail.html?id=${imdbID}`;
     })
 
-    //* css
+    //* feater: heart
+    const heartIcon = this.querySelector('.movie-card__heart')
+    let liked = false
+
+    heartIcon.addEventListener('click', event => {
+      event.stopPropagation() 
+      liked = !liked
+
+      heartIcon.innerHTML = liked ? '&#x2665;' : '&#x2661;'
+      heartIcon.style.color = liked ? 'red' : 'white'
+      heartIcon.classList.toggle('liked', liked)
+      updateLikeInDB(liked)
+    })
+
+    //* indexedDB
+    const updateLikeInDB = likedState => {
+      const openRequest = window.indexedDB.open('movieDB', 1)
+
+      openRequest.onupgradeneeded = event => {
+        const db = event.target.result
+        if (!db.objectStoreNames.contains('likedMovies')) {
+          db.createObjectStore('likedMovies', { keyPath: 'imdbID' })
+        }
+      }
+      openRequest.onsuccess = event => {
+        const db = event.target.result
+        const transaction = db.transaction('likedMovies', 'readwrite')
+        const store = transaction.objectStore('likedMovies')
+        const movie = { imdbID, title, poster, ratings: safeRatings }
+        
+        if (likedState) {
+          store.put(movie)
+        } else {
+          store.delete(imdbID)
+        }
+        transaction.oncomplete = () => db.close()
+      }
+      openRequest.onerror = (event) => {
+        console.error("opening indexedDB failed", event)
+      }
+    }
+
+
+
+    //* set, css
     const style = document.createElement('style')
     style.innerHTML = /*css*/`
     .movie-card {
       width: 100%;
     }
+    /* @ */
+    .movie-card__poster-wrapper {
+      position: relative;
+    }
+    
     .movie-card__poster {
       cursor: pointer;
     } 
@@ -100,12 +157,31 @@ class MovieCard extends HTMLElement {
       aspect-ratio: 3/2;
       border-radius: 10px;
     }
+    .movie-card__heart {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 48px;
+      color: white;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .movie-card__poster-wrapper:hover .movie-card__heart,
+    .movie-card__heart.liked {
+      opacity: 1;
+    }
+    .movie-card__poster-wrapper:hover .movie-card__heart {
+      opacity: 1;
+    }
+
     .movie-card__info-wrapper {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding-top: 5px;
     }
+
     .movie-card__title {
       color: #A5A5A5;
       -webkit-text-stroke-width: 1;
@@ -132,6 +208,7 @@ class MovieCard extends HTMLElement {
       font-weight: 700;
       line-height: 150%; /* 33px */
     }
+    
    .movie-card__ranked {
     font-family: roboto;
     font-weight: 800;
