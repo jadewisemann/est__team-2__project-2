@@ -13,18 +13,22 @@ class MovieCard extends HTMLElement {
   }
 
   //* define render function
-  render() {    
+  render() {
     //* get attribute 
     const title = this.getAttribute('title') || 'title'
     const poster = this.getAttribute('poster') || 'poster'
+    const isHorizontal = this.getAttribute('horizontal') === 'true' ? true : false
+    const imdbID = this.getAttribute('imdb-id') || ""
+    // rating
+    const isRating = this.getAttribute('is-rating') === 'true' ? true : false
     const parseRating = JSON.parse(this.getAttribute('ratings') || '[]')
-    const isCardRanked = this.getAttribute('ranked') === 'true' ? true : false
-    const rank = this.getAttribute('rank')
     const safeRatings =  parseRating.length
       ? parseRating
       : [{"Source": "N/A", "Value": "N/A"}]
     const { "Source": ratingSource , "Value": ratingScore } = safeRatings[0]
-    const isHorizontal = this.getAttribute('horizontal') === 'true' ? true : false
+    // rank
+    const isCardRanked = this.getAttribute('ranked') === 'true' ? true : false
+    const rank = this.getAttribute('rank')
 
     //* set, html
     //* optional html  => info wrapper 
@@ -32,7 +36,10 @@ class MovieCard extends HTMLElement {
       <div class="movie-card__info-wrapper">
         <div class="movie-card__title">${title}</div>
         <!-- <div class="movie-card__rating">${ratingScore}</div> -->
-        <rating-stars score=${ratingScore}></rating-stars>
+        ${isRating || !isHorizontal /*html*/
+          ? `<rating-stars score=${ratingScore}></rating-stars>`
+          : ""
+        }
       </div>
     `
 
@@ -44,14 +51,14 @@ class MovieCard extends HTMLElement {
 
     //* optional html  =>  card poster 
     const horizontalPoster = /*html*/`
-      <div class="movie-card__poster--horizontal" style="
+      <div class="movie-card__poster movie-card__poster--horizontal" style="
       background: url(${poster}) no-repeat center center;
       background-size: cover;
       "></div>
     `
     //* vertical 
     const verticalPoster = /*html*/`
-      <div class="movie-card__poster--vertical" style="
+      <div class="movie-card__poster movie-card__poster--vertical" style="
         background: url(${poster}) no-repeat center center;
         background-size: cover;
       "></div>
@@ -70,11 +77,19 @@ class MovieCard extends HTMLElement {
       </div>
     ` 
 
-    // css
+    //* js
+    this.querySelector('.movie-card__poster').addEventListener('click', () => {
+      window.location.href = `movie-detail.html?id=${imdbID}`;
+    })
+
+    //* css
     const style = document.createElement('style')
     style.innerHTML = /*css*/`
     .movie-card {
       width: 100%;
+    }
+    .movie-card__poster {
+      cursor: pointer;
     } 
     .movie-card__poster--vertical {
       width: 100%;
@@ -83,6 +98,7 @@ class MovieCard extends HTMLElement {
     .movie-card__poster--horizontal {
       width: 100%;
       aspect-ratio: 3/2;
+      border-radius: 10px;
     }
     .movie-card__info-wrapper {
       display: flex;

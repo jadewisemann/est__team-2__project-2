@@ -37,6 +37,7 @@ class CardSection extends HTMLElement {
   
   getMovieCards = async (uniqueId, isSectionRanked="", isHorizontal="") => {
     const cardMovieDetails = await this.fetchData();
+    console.log(cardMovieDetails)
     return cardMovieDetails.map((detail, index) => /*html*/`
       <movie-card
         title="${detail.Title}"  
@@ -46,6 +47,7 @@ class CardSection extends HTMLElement {
         ${isSectionRanked ? `rank="${index+1}"` : ""}
         class="swiper-slide swiper-slide-${uniqueId}"
         horizontal = ${isHorizontal}
+        imdb-id = ${detail.imdbID}
       ></movie-card>
     `).join('');
   }
