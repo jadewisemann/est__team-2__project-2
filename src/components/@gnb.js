@@ -1,6 +1,11 @@
-export default function createGnb() {
-  return `
-<div class="gnb">
+class Gnb extends HTMLElement {
+  constructor() {
+    super();
+
+    // 컴포넌트 내부 HTML 정의
+    this.innerHTML = `
+
+ <div class="gnb">
     <a href="index.html">
     <div class="gnb--logo">
     <h1>
@@ -16,9 +21,9 @@ export default function createGnb() {
         <path id="Exclude" fill-rule="evenodd" clip-rule="evenodd" d="M93.2017 30C101.486 30 108.202 23.2843 108.202 15C108.202 6.71573 101.486 0 93.2017 0C84.9174 0 78.2017 6.71573 78.2017 15C78.2017 23.2843 84.9174 30 93.2017 30ZM101.739 16.8917C103.072 16.1219 103.072 14.1974 101.739 13.4276L90.5121 6.94575C89.1788 6.17595 87.5121 7.1382 87.5121 8.6778L87.5121 21.6414C87.5121 23.181 89.1788 24.1433 90.5121 23.3735L101.739 16.8917Z" fill="white"/>
         </g>
         </svg>
-        </h1>
-    </a>    
-    </div>  
+      </h1>
+     </a>
+    </div>
     <ul class="gnb--menu">
         <li class="gnb--menu__Drama">Drama</li>
         <li class="gnb--menu__Action">Action</li>
@@ -26,9 +31,9 @@ export default function createGnb() {
         <li class="gnb--menu__Thriller">Thriller</li>
         <li class="gnb--menu__Horror">Horror</li>
     </ul>
-    
+
     <div class="gnb--search">
-        
+
         <button class="gnb--search-button">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path id="Vector" d="M22 20.8461L15.8547 14.7017C17.3314 12.9291 18.0678 10.6555 17.9107 8.35387C17.7536 6.05222 16.715 3.89975 15.011 2.34423C13.307 0.788714 11.0689 -0.0500902 8.76209 0.00231568C6.45532 0.0547216 4.25756 0.994303 2.62601 2.6256C0.994459 4.2569 0.0547302 6.45431 0.00231604 8.76072C-0.0500981 11.0671 0.788838 13.3049 2.3446 15.0087C3.90036 16.7124 6.05317 17.7508 8.35518 17.9079C10.6572 18.065 12.9312 17.3287 14.704 15.8522L20.8494 21.9965L22 20.8461ZM1.65657 8.9788C1.65657 7.53055 2.0861 6.11482 2.89083 4.91064C3.69556 3.70647 4.83935 2.76793 6.17757 2.2137C7.51579 1.65948 8.98833 1.51447 10.409 1.79701C11.8296 2.07955 13.1346 2.77695 14.1588 3.80102C15.183 4.82509 15.8805 6.12983 16.1631 7.55025C16.4457 8.97068 16.3007 10.443 15.7464 11.781C15.1921 13.119 14.2534 14.2626 13.049 15.0672C11.8446 15.8718 10.4287 16.3013 8.98021 16.3013C7.03852 16.2991 5.17698 15.527 3.80399 14.1542C2.43101 12.7814 1.65873 10.9202 1.65657 8.9788Z" fill="white"/>
@@ -44,4 +49,83 @@ export default function createGnb() {
 </div>
 
   `;
+
+    this.addEventListeners();
+  }
+
+  connectedCallback() {
+    this.addEventListeners();
+  }
+
+  addEventListeners() {
+    const searchInput = this.querySelector(".gnb--search--input");
+    const searchButton = this.querySelector(".gnb--search-button");
+    const searchContainer = this.querySelector(".gnb--search--container");
+
+    // 검색 버튼 클릭 시 검색창 활성화/비활성화 토글
+    this.addEventListener("click", () => {
+      searchContainer.classList.add("active");
+      searchButton.classList.add("hidden");
+
+      if (searchContainer.classList.contains("active")) {
+        searchInput.focus();
+      }
+    });
+
+    // 인풋창 외 클릭시 인풋창 비활성화
+    document.addEventListener("click", (e) => {
+      const isClickInside =
+        searchContainer.contains(e.target) || searchButton.contains(e.target);
+
+      if (!isClickInside) {
+        searchContainer.classList.remove("active");
+        searchButton.classList.remove("hidden");
+      }
+    });
+
+    // 검색창 엔터시  검색기능
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        let searchTerm = searchInput.value.trim();
+
+        if (searchTerm) {
+          window.location.href = `search-result.html?title=${searchTerm}`;
+        }
+      }
+    });
+
+    // gnb-genre 클릭 기능
+    const menuButtons = {
+      drama: {
+        element: document.querySelector(".gnb--menu__Drama"),
+        genreId: 18,
+      },
+      action: {
+        element: document.querySelector(".gnb--menu__Action"),
+        genreId: 28,
+      },
+      romance: {
+        element: document.querySelector(".gnb--menu__Romance"),
+        genreId: 10749,
+      },
+      thriller: {
+        element: document.querySelector(".gnb--menu__Thriller"),
+        genreId: 53,
+      },
+      horror: {
+        element: document.querySelector(".gnb--menu__Horror"),
+        genreId: 27,
+      },
+    };
+
+    Object.entries(menuButtons).forEach(([_, { element, genreId }]) => {
+      if (element) {
+        element.addEventListener("click", () => {
+          window.location.href = `search-result.html?genre=${genreId}`;
+        });
+      }
+    });
+  }
 }
+customElements.define("nav-bar", Gnb);

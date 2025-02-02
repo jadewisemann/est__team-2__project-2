@@ -165,7 +165,7 @@ table {
 
 .search-result {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
   gap: 1.25rem;
 }
 
@@ -186,6 +186,7 @@ table {
   cursor: pointer;
   transform: scale(1.05);
   transition: 0.3s;
+  opacity: 0.8;
 }
 .movie-box .movie-card__title {
   font-size: 1.6rem;

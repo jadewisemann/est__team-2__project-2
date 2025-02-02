@@ -1,6 +1,3 @@
-import { setupGnbMenu } from "../components/gnb.js";
-setupGnbMenu();
-
 document.addEventListener("DOMContentLoaded", () => {
   //변수 설정 및 url/ key
   const movieContainer = document.querySelector(".search-result");
@@ -42,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       const data = await response.json();
       currentMovies = data.results;
-      console.log(data);
       displayMoviesFromTmdb(currentMovies);
     } catch (error) {
       console.error("Error fetching movie data:", error);
@@ -90,7 +86,11 @@ document.addEventListener("DOMContentLoaded", () => {
         movieBox.classList.add("movie-box");
         movieBox.innerHTML = `
           <div class="movie-card">
-            <img src="https://image.tmdb.org/t/p/original/${movie.poster_path}" alt="${movie.original_title}">
+            <img src="https://image.tmdb.org/t/p/original/${
+              movie.poster_path !== "N/A"
+                ? movie.poster_path
+                : "./../asset/images/no-image.svg"
+            }" alt="${movie.original_title}">
           </div>
           <h3 class="movie-card__title">${movie.original_title}</h3>
         `;
@@ -149,7 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
       movieBox.innerHTML = `
         <div class="movie-card">
           <img src="${
-            movie.Poster !== "N/A" ? movie.Poster : "default-image.jpg"
+            movie.Poster !== "N/A"
+              ? movie.Poster
+              : "/est__team-2__project-2/asset/images/no-image.svg"
           }" alt="${movie.Title}">
         </div>
         <h3 class="movie-card__title">${movie.Title}</h3>
