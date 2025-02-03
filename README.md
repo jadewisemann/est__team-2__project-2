@@ -1,6 +1,6 @@
 <p align="center">
   <h1 align="center">VideOn</h1>
-  <h4>movie information site with pure vanila js</h4>
+  <h4 align="center">movie information site with pure vanila js</h4>
 </p>
 
 <b><i><p align="center">EST soft, FE 4기, 2조</p></i></b>
@@ -18,7 +18,12 @@
   </tr>
   <tr>
     <td colspan="2">
-    
+      <ul>
+        <li>기여 1
+        <li>기여 2
+        <li>기여 3
+        <li>기여 4
+      </ul>
     </td>
   </tr>
   <tr>
@@ -27,7 +32,12 @@
   </tr>
   <tr>
     <td colspan="2">
-
+      <ul>
+        <li>기여 1
+        <li>기여 2
+        <li>기여 3
+        <li>기여 4
+      </ul>
     </td>
   </tr>
   <tr>
@@ -35,9 +45,7 @@
     <td align="center">팀원</td>
   </tr>
   <tr>
-    <td colspan="2">
-
-    </td>
+    <td colspan="2"></td>
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/jadewisemann">정유진</a></td>
@@ -45,7 +53,12 @@
   </tr>
   <tr>
     <td colspan="2">
-
+      <ul>
+        <li>기여 1
+        <li>기여 2
+        <li>기여 3
+        <li>기여 4
+      </ul>
     </td>
   </tr>
 
@@ -56,29 +69,46 @@
 - omdbAPI, 오픈소스로 영화 정보를 제공하는 api를 이용하여 정보를 받아오고 해당 정보를 유저에게 제공하는 기능을 구현한 사이트
 
 ## 개발 환경
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![SASS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Swiper](https://img.shields.io/badge/swiper.js-6332F6?style=for-the-badge&logo=swiper)
 
-  - styling: `sass`
-  - *web-first*
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+[![discord](https://img.shields.io/badge/Discord-blue?style=for-the-badge)](https://discord.com/)
+![GitHub](https://img.shields.io/badge/githubwiki-181717?style=for-the-badge&logo=github)
+
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+
+- html 5
+- vanilla `javaScript`
   - `Query String`
-  - MPA
-  - no library or framework, vanila js
-  
-  - 일정 관리
-    - discord
-    - github project
-  
-  - 지식 관리
-    - github wiki
-  
+  - **MPA**
+- styling: `sass`
+    
+### 의존성
+
+- [swiper.js](https://github.com/nolimits4web/swiper)
+
+### 프로젝트 관리
+
+- 형상관리: `github`
+- 일정 관리: `discord`
+- 지식 관리: `github wiki`
+
+### 배포
+
+- [vercel](https://vercel.com/) 
 
 ## 기능 요구사항
 
+
 ### 필수 기능
 
-  - [ ] 영화 제목으로 검색 
-  - [ ] 검색 결과 페이지에서 영화 목록 출력
-  - [ ] 영화목록에서 각 영화의 상세 페이지 구성
-    - [ ] 제목, 개봉연도, 평점, 장르, 감독, 배우, 줄거리, 포스터 ...
+  - [x] 영화 제목으로 검색 
+  - [x] 검색 결과 페이지에서 영화 목록 출력
+  - [x] 영화목록에서 각 영화의 상세 페이지 구성
+    - [x] 제목, 개봉연도, 평점, 장르, 감독, 배우, 줄거리, 포스터 ...
   - [ ] 검색 사이트를 배포 ('Vercel' or 'Netlify')
 
 ### 선택 기능
@@ -98,8 +128,8 @@
 
   - [ ] 매인 화면에 영화 정보를 하드 코딩하지 않기
     - [ ] 다른 api 사용
-  - [ ] 로그인 (oAuth w.Fire Base)
-  - [ ] 관심 목록 (localStorage or indexed db)
+  - [ ] ~~로그인 (oAuth w.Fire Base)~~
+  - [x] 관심 목록 (localStorage or indexed db)
   - [ ] 메세지 및 언어 분리 ⇒ i18n 대응
 
 ## 데이터 흐름
