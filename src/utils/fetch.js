@@ -1,4 +1,5 @@
-const API_URL = 'http://www.omdbapi.com/?apikey=33c97183'
+const API_KEY = '33c97183'
+const API_URL = 'http://www.omdbapi.com'
 
 const fetchAPI = async (url) => {
   try {
@@ -15,16 +16,10 @@ const fetchAPI = async (url) => {
 }
 
 export const getSearchResult = async (title, year=``, page=1) => {
-  const data = await fetchAPI(`${API_URL}&s=${title}&y=${year}&page=${page}`);
+  const data = await fetchAPI(`${API_URL}?apikey=${API_KEY}&s=${title}&y=${year}&page=${page}`);
   return {...data.Search}
 }
-
-export const getSearchResultMore = async (title, year=``, page=1) => {
-  const data = await fetchAPI(`${API_URL}&s=${title}&y=${year}&page=${page}`);
-  return {...data.Search}
-}
-
 
 export const getMovieDetail = async (imdbID) => {
-  return await fetchAPI(`${API_URL}&i=${imdbID}`);
+  return await fetchAPI(`${API_URL}?apikey=${API_KEY}&i=${imdbID}`);
 }

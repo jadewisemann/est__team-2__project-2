@@ -35,3 +35,4 @@
 - update: 내용 추가
 - 기타 등등
 - 그러나 어떤 일을 하는지 명확하게 쓰기
+# commit convention
