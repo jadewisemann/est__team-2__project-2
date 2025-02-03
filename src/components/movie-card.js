@@ -87,7 +87,7 @@ class MovieCard extends HTMLElement {
 
     //* add poster click event listener
     this.querySelector('.movie-card__poster').addEventListener('click', () => {
-      window.location.href = `movie-detail.html?id=${imdbID}`;
+      window.location.href = `movie-details.html?id=${imdbID}`;
     })
 
     //* feater: heart
