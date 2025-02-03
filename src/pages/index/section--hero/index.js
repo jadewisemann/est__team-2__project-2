@@ -27,6 +27,7 @@ class SectionHero extends HTMLElement {
 
   //* render 
   async render() {
+    console.log(`hero`)
     //* fetch data
     const { imageURL, results } = await this.getData()
 
@@ -58,5 +59,5 @@ class SectionHero extends HTMLElement {
   }
 }
 
-//* decalre, custom-elemnente
+//* declare, custom-elemnente
 customElements.define('section--hero', SectionHero);

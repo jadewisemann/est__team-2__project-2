@@ -2,14 +2,14 @@
 import Swiper from '../../../utils/swiper-utils.js'
 
 // internal module
-import "../../../components/btn--paly-now.js"
+import "../../../components/btn--play-now.js"
 
 class HeroSlider extends HTMLElement {
   //* life cycle call back
   constructor() {
     super()
     this._imageURL = ''
-    this._resutls = ''
+    this._results = ''
     this._flag = false
   }
 
@@ -24,9 +24,9 @@ class HeroSlider extends HTMLElement {
     this.checkFlag() && this.render()
   }
 
-  get results() { return this._resutls }
+  get results() { return this._results }
   set results(value) {
-    this._resutls = value
+    this._results = value
     this.checkFlag() && this.render()
   }
 
@@ -43,7 +43,7 @@ class HeroSlider extends HTMLElement {
 
   async generateSlides() {
     const imageURL  = this._imageURL
-    const results  = this._resutls  
+    const results  = this._results  
     // const poster = `${imageURL}${results.poster_path}`
     const linearGradient = "linear-gradient(0deg, #141414 0%, rgba(20, 20, 20, 0.00) 100%)"
     return results.map(result => /*html*/ `
