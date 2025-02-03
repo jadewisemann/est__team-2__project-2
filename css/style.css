@@ -438,7 +438,7 @@ movie-card.swiper-slide {
 .movie-card__poster--horizontal {
   width: 100%;
   aspect-ratio: 3/2;
-  border-radius: 10px;
+  border-radius: 1rem;
 }
 
 .movie-card__heart {
@@ -473,7 +473,7 @@ movie-card.swiper-slide {
   -webkit-text-stroke-width: 1;
   -webkit-text-stroke-color: #000;
   font-family: Manrope;
-  font-size: 3rem;
+  font-size: 2.2rem;
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 33px */
@@ -500,21 +500,33 @@ movie-card.swiper-slide {
   font-weight: 800;
   font-style: italic;
   font-size: 18rem;
-  line-height: normal;
+  line-height: 0;
   color: white;
   position: absolute;
-  bottom: 14.3rem;
-  left: 1.0417vw;
+  bottom: 2.3rem;
+  left: 1vw;
   transform: translateY(100%);
+}
+
+rating-stars {
+  flex-grow: 0;
+  width: 12.3rem;
+  min-width: 10rem;
+  display: flex;
+  margin-left: auto;
+  justify-content: flex-end;
 }
 
 .stars {
   color: #A5A5A5;
   font-family: Manrope;
-  font-size: 22px;
+  font-size: 2.2rem;
   font-style: normal;
   font-weight: 700;
   line-height: 150%; /* 33px */
+}
+.stars img {
+  width: 2rem;
 }
 
 nav-bar {
