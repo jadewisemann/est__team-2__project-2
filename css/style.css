@@ -85,7 +85,7 @@ button:hover {
   height: 6.5rem;
   padding: 1.8rem 2.4rem;
   color: #ffffff;
-  font-size: 1.8rem;
+  font-size: 2rem;
   border: none;
   border-radius: 0.8rem;
   background-color: #3887FF;
@@ -170,7 +170,7 @@ button:hover {
 }
 .card__rating .card__rating--title {
   color: #ffffff;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: normal;
 }
 .card__rating .rating {
@@ -193,7 +193,7 @@ button:hover {
 }
 .card__rating .rating li span {
   color: #ffffff;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   padding-left: 0.3rem;
 }
 
@@ -226,6 +226,7 @@ button:hover {
 .card__person--contents {
   width: auto;
   flex-shrink: 0;
+  text-align: left;
 }
 .card__person--contents h5 {
   color: #ffffff;
@@ -234,7 +235,7 @@ button:hover {
 }
 .card__person--contents p {
   color: #999999;
-  font-size: 1.8rem;
+  font-size: 2rem;
   text-align: left;
 }
 
@@ -263,7 +264,7 @@ button:hover {
   width: 100%;
   padding: 10rem;
   display: flex;
-  gap: 10.4167vw;
+  gap: 20vw;
   background-color: #141414;
   position: relative;
 }
@@ -275,22 +276,26 @@ button:hover {
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
+  padding-top: 5rem;
 }
 .preview .preview__contents .preview__labelgroup {
   display: flex;
   gap: 1rem;
+  margin-top: 5rem;
 }
 .preview .preview__contents .preview__labelgroup img {
   width: 3rem;
   height: 3rem;
 }
 .preview .preview__poster {
-  width: 30rem;
+  width: 44rem;
   flex-shrink: 0;
+  margin-left: auto;
 }
 .preview .preview__poster img {
   -o-object-fit: cover;
      object-fit: cover;
+  width: 100%;
 }
 .preview .preview__poster--bg {
   position: absolute;
@@ -325,33 +330,34 @@ span {
 
 .text--title__detail {
   color: #999999;
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 400;
 }
 
 .text--contents__detail {
   color: #ffffff;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 400;
 }
 
 .preview__title {
   color: #ffffff;
-  font-size: 6.4rem;
+  font-size: 8rem;
   font-weight: 600;
 }
 
 .preview__description {
   color: #ffffff;
-  font-size: 1.8rem;
+  font-size: 2.2rem;
   font-weight: 400;
+  line-height: 1.7;
 }
 
 .preview__tag {
   display: inline-block;
   padding: 0.3rem 1.5rem;
   color: #ffffff;
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   font-weight: 400;
   border: 1px solid #ffffff;
   border-radius: 0.5rem;
@@ -369,6 +375,12 @@ span {
 }
 .text--search span {
   color: #3887FF;
+}
+
+.textbox p {
+  text-align: center;
+  color: #999999;
+  font-size: 2.4rem;
 }
 
 .btn--play-now {
@@ -662,7 +674,6 @@ footer div a:hover {
 .movie-box .movie-card__title {
   font-size: 2.2rem;
   color: #717171;
-  line-height: 2.4rem;
 }
 
 .wrap__movie-details .textbox {
