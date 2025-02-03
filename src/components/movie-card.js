@@ -139,6 +139,7 @@ class MovieCard extends HTMLElement {
     style.innerHTML = /*css*/`
     .movie-card {
       width: 100%;
+      max-width: 200px;
     }
     /* @ */
     .movie-card__poster-wrapper {
