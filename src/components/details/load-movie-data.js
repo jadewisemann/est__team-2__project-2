@@ -1,11 +1,10 @@
-import '../../utils/movie-service'
+import '../../utils/movie-service.js' //페이지 연결할때 살리기
 import { getOmdbApiData, getTmdbApiCreditsData } from '../../utils/movie-service.js';
 
 
 const queryString = window.location.search
 const params = new URLSearchParams(queryString)
-
-const imdb_id = params.get('imdb_id'); //페이지연결할때 살리기
+const imdb_id = params.get('id'); //페이지 연결할때 살리기
 
 async function initializeDtailTextbox() {
     // const imdb_id = 'tt2294629'// imdb_id_dummy

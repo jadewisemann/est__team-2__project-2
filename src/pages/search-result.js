@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         //포스터 클릭시 imdb 전달
         movieBox.addEventListener("click", () => {
-          window.location.href = `movie-detail.html?id=${imdbID}`;
+          window.location.href = `movie-details.html?id=${imdbID}`;
         });
 
         movieContainer.appendChild(movieBox);
@@ -158,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
       `;
 
       movieBox.addEventListener("click", () => {
-        window.location.href = `movie-detail.html?id=${movie.imdbID}`;
+        window.location.href = `movie-details.html?id=${movie.imdbID}`;
       });
 
       movieContainer.appendChild(movieBox);
