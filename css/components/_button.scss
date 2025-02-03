@@ -1,55 +1,69 @@
 @use '../abstract/variables' as *;
 .btn{
-    background-color: aquamarine;
-    width: 3rem;
-    height: 3rem;
+  width: auto;
+  height: 6.5rem;
+  padding: 1.8rem 2.4rem;
+  color: $color-white;
+  font-size: $font-m;
+  border: none;
+  border-radius: .8rem;
+  background-color: #3887FF;
 }
-
+.previews__btn--watch{
+  width: 33.2rem;
+  height: 12.6rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  color: $color-black;
+  font-size: $font-list-title;
+  font-weight: bold;
+  background-color: $color-white;
+}
 .btn-top {
-    width: 8rem;
-    height: 8rem;
-    border: 0;
-    background: 0;
-    cursor: pointer;
-    position: fixed;
-    bottom: 2rem;
-    right: 1.5rem;
-    z-index: 1000;
-    
-    & :active {
-    opacity: 0.8;
-    transition: 0.3s;
-  }
-  }
+  width: 8rem;
+  height: 8rem;
+  border: 0;
+  background: 0;
+  cursor: pointer;
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem;
+  z-index: 1000;
 
-  .btn-viewmore{
-    width: 13.9rem;
-    height: 3.6rem;
-    font-size:$font-xl;
-    line-height: 3.3rem;
-    color: $color-gray2;
-    background: none;
-    border: none;
-    cursor: pointer;
-    
-    &:active{
-    opacity: .8;
-    }
+  & :active {
+  opacity: 0.8;
+  transition: 0.3s;
+  }
+}
+.btn-viewmore{
+  width: 13.9rem;
+  height: 3.6rem;
+  font-size:$font-xl;
+  line-height: 3.3rem;
+  color: $color-gray2;
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+  &:active{
+  opacity: .8;
+  }
 }
 .btn-play {
-    padding: 1.4rem 2.4rem;
-    align-items: center;
-    gap: 0.4rem;
-    background-color: $color-primary;
-    color: $color-white;
-    border-radius: 0.5rem;
-    border: none;
-    cursor: pointer;
+  padding: 1.4rem 2.4rem;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: $color-primary;
+  color: $color-white;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
 
-    &:active {
+  &:active {
     opacity: 0.8;
     transition: 0.3s;
   }
-  
-  }
+}
  

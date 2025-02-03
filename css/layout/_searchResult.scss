@@ -1,4 +1,4 @@
-@import "../variables"; // 변수 파일 임포트
+@use '../abstract/variables' as *;
 
 .movie-result {
   background-color: $color-black;
@@ -16,6 +16,7 @@
   margin-bottom: 5.31rem;
 
   .movie-card {
+    height: 30rem;
     border-radius: 1rem;
     overflow: hidden;
     margin-bottom: 1rem;
