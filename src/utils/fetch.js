@@ -3,17 +3,17 @@ const API_URL = 'http://www.omdbapi.com'
 
 const fetchAPI = async (url) => {
   try {
-    const response = await fetch(url)
+    const response = await fetch(url);
     if (!response.ok) {
-      throw new Error(`response is not ok`)
+      throw new Error(`response is not ok`);
     }
-    const data = await response.json()
-    return data
+    const data = await response.json();
+    return data;
   } catch (error) {
-    console.error(`Error fetching data: ${error}`)
-    throw error
+    console.error(`Error fetching data: ${error}`);
+    throw error;
   }
-}
+};
 
 export const getSearchResult = async (title, year=``, page=1) => {
   const data = await fetchAPI(`${API_URL}?apikey=${API_KEY}&s=${title}&y=${year}&page=${page}`);
