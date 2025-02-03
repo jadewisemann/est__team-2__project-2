@@ -114,10 +114,12 @@ button:hover {
   bottom: 5rem;
   z-index: 1000;
   cursor: pointer;
+  opacity: 0; /* 기본적으로 숨김 */
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
 }
 .btn-top :active {
   opacity: 0.8;
-  transition: 0.3s;
 }
 
 .btn-viewmore {
