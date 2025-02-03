@@ -97,59 +97,41 @@ class CardSection extends HTMLElement {
     //* set css
     const style = document.createElement('style')
     style.innerHTML = /*css*/`
-    ${isSectionRanked 
-      ? `
-      .swiper-slide-${uniqueId} {
-        margin-bottom: 80px;
-      }`
-      : ""
-    }
-    .card-section {
-      width: 83vw;
-      margin: 0 auto 100px;
-    }
-
-    .card-section__title {
-      color: var(--Absolute-White, #FFF);
-      font-family: Manrope;
-      font-size: 30px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: 150%; /* 45px */
-      margin: 25px 0;
-    }
-
-    .swiper-slide {
-      padding: 0;
-    }
-
-    /* button */
-    .swiper-button-prev-${uniqueId},
-    .swiper-button-next-${uniqueId} {
-      width: 56px;
-      height: 56px;
-      padding: 14px;
-      border-radius: 8px;
-      border: 1px solid var(--Black-12, #1F1F1F);
-      background: var(--Black-06, #0F0F0F);
-      
-      &::after {
-        content: none;
+      ${isSectionRanked 
+        ? `
+        .swiper-slide-${uniqueId} {
+          margin-bottom: 80px;
+        }`
+        : ""
       }
-    }
+
+      /* button */
+      .swiper-button-prev-${uniqueId},
+      .swiper-button-next-${uniqueId} {
+        width: 56px;
+        height: 56px;
+        padding: 14px;
+        border-radius: 8px;
+        border: 1px solid var(--Black-12, #1F1F1F);
+        background: var(--Black-06, #0F0F0F);
+        
+        &::after {
+          content: none;
+        }
+      }
   
-    .icon-${uniqueId} {
-      height: 28px;
-      width: 28px;
-    }
-  
-    .swiper-button-prev-${uniqueId} .icon {
-      background: url("/asset/img/swiper-button-prev.svg");
-    }
-      
-    .swiper-button-next-${uniqueId} .icon {
-      background: url("/asset/img/swiper-button-next.svg");
-    } 
+      .icon-${uniqueId} {
+        height: 28px;
+        width: 28px;
+      }
+    
+      .swiper-button-prev-${uniqueId} .icon {
+        background: url("/asset/img/swiper-button-prev.svg");
+      }
+        
+      .swiper-button-next-${uniqueId} .icon {
+        background: url("/asset/img/swiper-button-next.svg");
+      } 
     `
     this.appendChild(style)
   }

@@ -1,0 +1,87 @@
+@use '../abstract/variables' as *;
+.movie-card {
+  width: 100%;
+  max-width: 30rem;
+}
+/* @ */
+.movie-card__poster-wrapper {
+  position: relative;
+}
+
+.movie-card__poster {
+  cursor: pointer;
+} 
+.movie-card__poster--vertical {
+  width: 100%;
+  aspect-ratio: 2/3;
+}
+.movie-card__poster--horizontal {
+  width: 100%;
+  aspect-ratio: 3/2;
+  border-radius: 10px;
+}
+.movie-card__heart {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 4.8rem;
+  color: white;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.movie-card__poster-wrapper:hover .movie-card__heart,
+.movie-card__heart.liked {
+  opacity: 1;
+}
+.movie-card__poster-wrapper:hover .movie-card__heart {
+  opacity: 1;
+}
+
+.movie-card__info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: .5rem;
+}
+
+.movie-card__title {
+  color: $color-gray1;
+  -webkit-text-stroke-width: 1;
+  -webkit-text-stroke-color: #000;
+  font-family: Manrope;
+  font-size: $font-list-title;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 33px */
+  /* ban linebreak */
+  white-space: nowrap;
+  overflow: hidden;         
+  text-overflow: ellipsis; 
+}
+
+.movie-card__rating {
+  color: $color-gray1;
+  text-align: right;
+  -webkit-text-stroke-width: 1;
+  -webkit-text-stroke-color: #000;
+  font-family: Manrope;
+  font-size: $font-xl;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 33px */
+}
+
+.movie-card__ranked {
+font-family: roboto;
+font-weight: 800;
+font-style: italic;
+font-size: 18rem;
+line-height: normal;
+color: white;
+position: absolute;
+bottom: 14.3rem;
+left: 1.0417vw;
+transform: translateY(100%);
+
+} 

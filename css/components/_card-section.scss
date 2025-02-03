@@ -1,0 +1,19 @@
+.card-section {
+  width: 83vw;
+  margin: 0 auto 100px;
+}
+
+.card-section__title {
+  color: var(--Absolute-White, #FFF);
+  font-family: Manrope;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 45px */
+  margin: 25px 0;
+}
+
+movie-card.swiper-slide {
+  padding: 0;
+}
+
