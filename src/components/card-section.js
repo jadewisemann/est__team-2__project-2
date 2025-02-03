@@ -37,7 +37,7 @@ class CardSection extends HTMLElement {
   
   getMovieCards = async (uniqueId, isSectionRanked="", isHorizontal="") => {
     const cardMovieDetails = await this.fetchData();
-    console.log(cardMovieDetails)
+    // console.log(cardMovieDetails)
     return cardMovieDetails.map((detail, index) => /*html*/`
       <movie-card
         title="${detail.Title}"  
