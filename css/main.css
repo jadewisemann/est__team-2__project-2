@@ -72,7 +72,7 @@ table {
   clip: rect(1px, 1px, 1px, 1px);
 }
 
-.navbar {
+nav-bar {
   position: sticky;
   top: 0rem;
   z-index: 1000;
