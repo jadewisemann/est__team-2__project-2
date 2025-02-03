@@ -218,8 +218,7 @@ button:hover {
 }
 .card__person--img img {
   width: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   transform: translate(0, -13%);
 }
 
@@ -289,8 +288,7 @@ button:hover {
   flex-shrink: 0;
 }
 .preview .preview__poster img {
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .preview .preview__poster--bg {
   position: absolute;
@@ -304,10 +302,8 @@ button:hover {
 .preview .preview__poster--bg img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -o-object-position: center top;
-     object-position: center top;
+  object-fit: cover;
+  object-position: center top;
 }
 
 h1,
@@ -438,7 +434,7 @@ movie-card.swiper-slide {
 .movie-card__poster--horizontal {
   width: 100%;
   aspect-ratio: 3/2;
-  border-radius: 10px;
+  border-radius: 1rem;
 }
 
 .movie-card__heart {
@@ -558,6 +554,12 @@ nav-bar {
   cursor: pointer;
 }
 
+.gnb--favorite {
+  cursor: pointer;
+  color: #ffffff;
+  display: flex;
+}
+
 .gnb--search {
   display: flex;
   align-items: center;
@@ -638,8 +640,7 @@ footer div a:hover {
 .movie-box .movie-card img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 .movie-box .movie-card img:hover {
   cursor: pointer;
