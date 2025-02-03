@@ -16,8 +16,11 @@ class MovieCard extends HTMLElement {
   render() {
     // attribute
     //> get attribute
+    // const alterPoster = '/asset/img/alt-poster.svg'
     const title = this.getAttribute('title') || 'title'
-    const poster = this.getAttribute('poster') || 'poster'
+    const altPoster = '/asset/img/alt-poster.svg'
+    const rawPoster = this.getAttribute('poster') || altPoster 
+    const poster = rawPoster && rawPoster !== "N/A" ? rawPoster : altPoster
     const isHorizontal = this.getAttribute('horizontal') === 'true' ? true : false
     const imdbID = this.getAttribute('imdb-id') || ""
     
@@ -90,7 +93,7 @@ class MovieCard extends HTMLElement {
       window.location.href = `movie-details.html?id=${imdbID}`;
     })
 
-    //* feater: heart
+    //* feat: heart
     const heartIcon = this.querySelector('.movie-card__heart')
     let liked = false
 
