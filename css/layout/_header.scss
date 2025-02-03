@@ -1,4 +1,4 @@
-@import "../variables"; // 변수 파일 임포트
+@use '../abstract/variables' as *;
 
 nav-bar {
   position: sticky;
