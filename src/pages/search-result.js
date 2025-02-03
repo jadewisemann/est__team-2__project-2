@@ -1,3 +1,5 @@
+import '../components/movie-card.js'
+
 document.addEventListener("DOMContentLoaded", () => {
   //변수 설정 및 url/ key
   const movieContainer = document.querySelector(".search-result");
@@ -84,22 +86,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (movie) {
         movieBox.classList.add("movie-box");
-        movieBox.innerHTML = `
-          <div class="movie-card">
-            <img src="https://image.tmdb.org/t/p/original/${
-              movie.poster_path !== "N/A"
-                ? movie.poster_path
-                : "./../asset/images/no-image.svg"
-            }" alt="${movie.original_title}">
-          </div>
-          <h3 class="movie-card__title">${movie.original_title}</h3>
-        `;
-
-        //포스터 클릭시 imdb 전달
-        movieBox.addEventListener("click", () => {
-          window.location.href = `movie-details.html?id=${imdbID}`;
-        });
-
+        movieBox.innerHTML  = /*html*/`
+          <movie-card
+            title= '${movie.original_title}'
+            imdbID= '${movie.imdbID}'
+            poster= 'https://image.tmdb.org/t/p/original/${movie.poster_path}'
+            alt= '${movie.original_title}'
+          ></movie-card>
+        `
         movieContainer.appendChild(movieBox);
       }
     });
@@ -131,6 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
       movieContainer.innerHTML = `<h2 class="text__search">${error}</h2>`;
     }
   }
+
   // omdb포스터 구현
   function displayMoviesFromOmdb(movies) {
     movieContainer.innerHTML = "";
@@ -146,20 +141,18 @@ document.addEventListener("DOMContentLoaded", () => {
       const movieBox = document.createElement("div");
       movieBox.classList.add("movie-box");
 
-      movieBox.innerHTML = `
-        <div class="movie-card">
-          <img src="${
-            movie.Poster !== "N/A"
-              ? movie.Poster
-              : "/est__team-2__project-2/asset/images/no-image.svg"
-          }" alt="${movie.Title}">
-        </div>
-        <h3 class="movie-card__title">${movie.Title}</h3>
-      `;
-
-      movieBox.addEventListener("click", () => {
-        window.location.href = `movie-details.html?id=${movie.imdbID}`;
-      });
+      if (movie) {
+        movieBox.classList.add("movie-box");
+        movieBox.innerHTML  = /*html*/`
+          <movie-card
+            title= '${movie.Title}'
+            imdbID= '${movie.imdbID}'
+            poster= '${movie.Poster}'
+            alt= '${movie.Title}'
+          ></movie-card>
+        `
+        movieContainer.appendChild(movieBox);
+      }
 
       movieContainer.appendChild(movieBox);
     });
