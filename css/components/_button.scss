@@ -26,11 +26,11 @@
   height: 8rem;
   border: 0;
   background: 0;
-  cursor: pointer;
   position: fixed;
-  bottom: 2rem;
-  right: 1.5rem;
+  right: 5rem;
+  bottom: 5rem;
   z-index: 1000;
+  cursor: pointer;
 
   & :active {
   opacity: 0.8;
