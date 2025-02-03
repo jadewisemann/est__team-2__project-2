@@ -1,3 +1,4 @@
+
 class RatingStars extends HTMLElement {
   //* life cycle call back
   constructor() {
@@ -31,9 +32,21 @@ class RatingStars extends HTMLElement {
     const filledStars = Math.floor(score)
     const hasHalfStar = score - filledStars >= 0.5
     const emptyStars = maxStars - filledStars - (hasHalfStar ? 1 : 0)
-    const stars = '★'.repeat(filledStars) + (hasHalfStar ? '⯨' : '') + '☆'.repeat(emptyStars);
-    
-    return score === 'N/A' ? score : stars 
+
+    const starFull = `<img src="/asset/img/star_full.svg" alt="star full" />`
+    const starHalf = `<img src="/asset/img/star_half.svg" alt="star half" />`
+    const starEmpty = `<img src="/asset/img/star_empty.svg" alt="star empty" />`
+
+    const stars = [
+      ...Array(filledStars).fill(starFull),
+      ...(hasHalfStar ? [starHalf] : []),
+      ...Array(emptyStars).fill(starEmpty)
+    ].join("");
+
+    // const stars = '★'.repeat(filledStars) + (hasHalfStar ? '⯨' : '') + '☆'.repeat(emptyStars);
+    // return score === 'N/A' ? score : stars 
+  
+    return stars;
   }
 
 
