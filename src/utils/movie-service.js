@@ -40,6 +40,9 @@ export const getTmdbApiCreditsData = async (imdbID) => {
         `${tmdb_API_URL}/find/${imdbID}?external_source=imdb_id`, options
     )
     const tmdbMovie = tmdbIdResponse.movie_results?.[0]
+    console.log(tmdbMovie);
+    console.log(imdbID);
+    
     if(!tmdbMovie){
         throw new Error(`TMDb에서 IMDb ID(${imdbID})로 영화를 찾을 수 없습니다.`);
     }

@@ -3,7 +3,8 @@
     width: 100%;
     padding: 10rem;
     display: flex;
-    gap: 10.4167vw;
+    // gap: 10.4167vw;
+    gap: 20vw;
     background-color: $color-gray5;
     position: relative;
     div{
@@ -14,9 +15,11 @@
         display: flex;
         flex-direction: column;
         gap: 3.2rem;
+        padding-top: 5rem;
         .preview__labelgroup{
             display: flex;
             gap: 1rem;
+            margin-top: 5rem;
             img{
                 width: 3rem;
                 height: 3rem;
@@ -24,10 +27,12 @@
         }
     }
     .preview__poster{
-        width: 30rem;
+        width: 44rem;
         flex-shrink: 0;
+        margin-left: auto;
         img{
             object-fit: cover;
+            width: 100%;
         }
     }
     .preview__poster--bg{
