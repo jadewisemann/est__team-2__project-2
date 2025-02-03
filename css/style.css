@@ -426,6 +426,8 @@ movie-card.swiper-slide {
 
 .movie-card__poster {
   cursor: pointer;
+  border-radius: 1rem;
+  overflow: hidden;
 }
 
 .movie-card__poster--vertical {
@@ -631,9 +633,6 @@ footer div a:hover {
   margin-bottom: 5.31rem;
 }
 .movie-box .movie-card {
-  height: 25vw;
-  border-radius: 1rem;
-  overflow: hidden;
   margin-bottom: 1rem;
 }
 .movie-box .movie-card img {

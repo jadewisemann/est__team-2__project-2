@@ -10,6 +10,8 @@
 
 .movie-card__poster {
   cursor: pointer;
+  border-radius: 1rem;
+  overflow: hidden;
 } 
 .movie-card__poster--vertical {
   width: 100%;
