@@ -100,7 +100,7 @@ class CardSection extends HTMLElement {
       ${isSectionRanked 
         ? `
         .swiper-slide-${uniqueId} {
-          margin-bottom: 80px;
+          margin-bottom: 4.5rem;
         }`
         : ""
       }
@@ -108,10 +108,10 @@ class CardSection extends HTMLElement {
       /* button */
       .swiper-button-prev-${uniqueId},
       .swiper-button-next-${uniqueId} {
-        width: 56px;
-        height: 56px;
-        padding: 14px;
-        border-radius: 8px;
+        width: 5.6rem;
+        height: 5.6rem;
+        padding: 1.4rem;
+        border-radius: .8rem;
         border: 1px solid var(--Black-12, #1F1F1F);
         background: var(--Black-06, #0F0F0F);
         
