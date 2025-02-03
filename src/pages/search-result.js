@@ -85,11 +85,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const movieBox = document.createElement("div");
 
       if (movie) {
+        
+        console.log(movie)
+
         movieBox.classList.add("movie-box");
         movieBox.innerHTML  = /*html*/`
           <movie-card
             title= '${movie.original_title}'
-            imdbID= '${movie.imdbID}'
+            imdb-id= '${imdbID}'
             poster= 'https://image.tmdb.org/t/p/original/${movie.poster_path}'
             alt= '${movie.original_title}'
           ></movie-card>
@@ -142,11 +145,12 @@ document.addEventListener("DOMContentLoaded", () => {
       movieBox.classList.add("movie-box");
 
       if (movie) {
+
         movieBox.classList.add("movie-box");
         movieBox.innerHTML  = /*html*/`
           <movie-card
             title= '${movie.Title}'
-            imdbID= '${movie.imdbID}'
+            imdb-id= '${movie.imdbID}'
             poster= '${movie.Poster}'
             alt= '${movie.Title}'
           ></movie-card>
