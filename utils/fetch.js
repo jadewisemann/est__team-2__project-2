@@ -1,5 +1,5 @@
 const API_KEY = '33c97183'
-const API_URL = 'http://www.omdbapi.com'
+const API_URL = 'https://www.omdbapi.com'
 
 const fetchAPI = async (url) => {
   try {

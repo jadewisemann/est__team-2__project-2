@@ -1,5 +1,5 @@
 // movie-service.js (API 호출을 위한 별도 모듈)
-const omdb_API_URL = 'http://www.omdbapi.com/?apikey=33c97183'
+const omdb_API_URL = 'https://www.omdbapi.com/?apikey=33c97183'
 const tmdb_API_URL = 'https://api.themoviedb.org/3'
 const tmdb_API_KEY = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZjQ5MGFjODg1NmYyZDljNmQ1NjhiZDRkZjExZjM4ZSIsIm5iZiI6MTczNzAzNjIxNi43MDg5OTk5LCJzdWIiOiI2Nzg5MTFiODQ1ZjI5NmY2MDExZDQzODIiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.P3tFzr6KGwZgZ2VEPnh7M_39YP8WwK-qU0gCO8Ii3g8'
 

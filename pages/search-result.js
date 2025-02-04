@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 const loadingAnimation = /*html*/`
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect fill="#3887FF" stroke="#3887FF" stroke-width="8" width="30" height="30" x="25" y="85"><animate attributeName="opacity" calcMode="spline" dur="3" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></rect><rect fill="#3887FF" stroke="#3887FF" stroke-width="8" width="30" height="30" x="85" y="85"><animate attributeName="opacity" calcMode="spline" dur="3" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></rect><rect fill="#3887FF" stroke="#3887FF" stroke-width="8" width="30" height="30" x="145" y="85"><animate attributeName="opacity" calcMode="spline" dur="3" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></rect></svg>
+  <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect fill="#3887FF" stroke="#3887FF" stroke-width="8" width="30" height="30" x="25" y="85"><animate attributeName="opacity" calcMode="spline" dur="3" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></rect><rect fill="#3887FF" stroke="#3887FF" stroke-width="8" width="30" height="30" x="85" y="85"><animate attributeName="opacity" calcMode="spline" dur="3" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></rect><rect fill="#3887FF" stroke="#3887FF" stroke-width="8" width="30" height="30" x="145" y="85"><animate attributeName="opacity" calcMode="spline" dur="3" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></rect></svg>
 `
 
 const loadMore = document.querySelector('.load-more');
@@ -18,7 +18,7 @@ let genreId = '';
 let currentMovies = [];
 
 const TMDB_API_KEY = "d5e4a2eb5fb264de1583b6945d203546";
-const OMDB_API_URL = "http://www.omdbapi.com/?apikey=33c97183";
+const OMDB_API_URL = "https://www.omdbapi.com/?apikey=33c97183";
 
 const options = {
   method: "GET",
