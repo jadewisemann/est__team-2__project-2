@@ -7,7 +7,7 @@
   font-size: $font-m;
   border: none;
   border-radius: .8rem;
-  background-color: #3887FF;
+  background-color: $color-primary;
 }
 .previews__btn--watch{
   width: 33.2rem;
@@ -67,4 +67,16 @@
     transition: 0.3s;
   }
 }
- 
+.load-more__wrap{
+  width: 100%;
+  text-align: center;
+  .load-more{
+    color: $color-white;
+    font-size: $font-s;
+    padding: 1.4rem 3.4rem;
+    background-color: $color-primary;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+  }
+}
