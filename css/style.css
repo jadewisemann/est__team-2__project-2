@@ -537,7 +537,7 @@ rating-stars {
   width: 2rem;
 }
 
-nav-bar {
+main-header {
   position: sticky;
   top: 0rem;
   z-index: 1000;

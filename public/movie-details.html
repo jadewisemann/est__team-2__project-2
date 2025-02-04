@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>movie details</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <!-- fontawesome -->
+    <!-- font-awesome -->
     <script src="https://kit.fontawesome.com/b6ec81ac5f.js" crossorigin="anonymous"></script>
     <!-- swiper -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- main css-->
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <main-header></main-header>
@@ -19,9 +20,12 @@
         <section--similar></section--similar>
     </details-page>
     <main-footer></main-footer>
-    <script type="module" src="/src/pages/detail-page.js" defer></script>
-    <script type="module" src="/src/components/details/section-similar.js" defer></script>
-    <script type="module" src="/src/layout/index.js"></script>
-    <script src="../asset/js/_swiper-custom.js"></script>
 </body>
+
+<script type="module" src="/src/pages/detail-page.js" defer></script>
+<script type="module" src="/src/layout/index.js"></script>
+<script type="module" src="/src/components/details/section-similar.js" defer></script>
+<!-- swiper over-ride -->
+<script src="../asset/js/_swiper-custom.js"></script>
+
 </html>

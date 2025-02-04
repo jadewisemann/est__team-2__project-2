@@ -13,7 +13,7 @@ class BtnPlayNow extends HTMLElement {
 
     this.innerHTML = /*html*/`    
       <button class="btn--play-now">
-          <a href="movie-details.html?i=${imdbID}" class="btn--play-now__anchor">
+          <a href="movie-details.html?id=${imdbID}" class="btn--play-now__anchor">
               Play Now
           </a> 
       </button>
