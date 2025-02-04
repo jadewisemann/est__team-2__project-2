@@ -31,7 +31,7 @@ const loadLikedMovies = () => {
 }
 
 const displayMovies = movies => {
-  const container = document.querySelector('.movies--container')
+  const container = document.querySelector('.liked-page__movies--container')
   container.innerHTML = movies.length
   ? movies.map(movie =>/*html*/`
       <movie-card

@@ -1,3 +1,7 @@
+const loadingAnimation = /*html*/`
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect fill="#3887FF" stroke="#3887FF" stroke-width="8" width="30" height="30" x="25" y="85"><animate attributeName="opacity" calcMode="spline" dur="3" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></rect><rect fill="#3887FF" stroke="#3887FF" stroke-width="8" width="30" height="30" x="85" y="85"><animate attributeName="opacity" calcMode="spline" dur="3" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></rect><rect fill="#3887FF" stroke="#3887FF" stroke-width="8" width="30" height="30" x="145" y="85"><animate attributeName="opacity" calcMode="spline" dur="3" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></rect></svg>
+`
+
 class LoadingSpinner extends HTMLElement { 
   constructor() {
     super();
@@ -17,9 +21,15 @@ class LoadingSpinner extends HTMLElement {
           align-items: center;
           z-index: 9999;
         }
+        .loader-wrapper {
+          width: 130px
+        }
       </style>
+
       <div class="loader">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle fill="#3681F3" stroke="#3681F3" stroke-width="15" r="15" cx="40" cy="100"><animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.4"></animate></circle><circle fill="#3681F3" stroke="#3681F3" stroke-width="15" r="15" cx="100" cy="100"><animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="-.2"></animate></circle><circle fill="#3681F3" stroke="#3681F3" stroke-width="15" r="15" cx="160" cy="100"><animate attributeName="opacity" calcMode="spline" dur="2" values="1;0;1;" keySplines=".5 0 .5 1;.5 0 .5 1" repeatCount="indefinite" begin="0"></animate></circle></svg>
+        <div class="loader-wrapper">
+          ${loadingAnimation}
+        </div>
       </div>
     `;
   }
