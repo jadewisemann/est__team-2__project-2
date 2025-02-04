@@ -1,4 +1,4 @@
-@use '../abstract/variables' as *;
+@use "../abstract/variables" as *;
 
 nav-bar {
   position: sticky;
@@ -42,6 +42,11 @@ nav-bar {
       cursor: pointer;
     }
   }
+}
+.gnb--favorite {
+  cursor: pointer;
+  color: $color-white;
+  display: flex;
 }
 
 .gnb--search {
