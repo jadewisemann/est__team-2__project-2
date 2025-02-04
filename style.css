@@ -705,14 +705,34 @@ footer div a:hover {
   transform: translateX(-50%);
 }
 
-.text--search {
-  text-align: center;
-}
-
 .wrap__movie-details .textbox {
   display: block;
   padding: 4.5rem 15rem;
 }
+
+
+.liked-page__header {
+  color: aliceblue;
+  width: 100vw;
+  padding: 2.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+}
+
+.liked-page__movies--container {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin:  0 10vw;
+  margin-bottom: 5rem;
+}
+
+.liked-page__movies--container > movie-card {
+  width: 200px;
+}
+
 
 .swiper {
   width: 100%;

@@ -3,43 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <title>Document</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .liked__header {
-      color: aliceblue;
-      width: 100vw;
-      padding: 2.4rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 4rem;
-    }
-    .movies--container {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin:  0 10vw;
-      margin-bottom: 5rem;
-      /* background-color: red; */
-    }
-    movie-card {
-      width: 200px;
-      /* height: 100px; */
-
-    }
-  </style>
-
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
   <main-header></main-header>
-    <h2 class="liked__header">Liked Movie</h2>
-    <div class="movies--container">
+  <h2 class="liked-page__header">Liked Movie</h2>
+
+  <div class="liked-page__movies--container">
+    <!-- movie-card, will loaded here -->
   </div>
   <main-footer></main-footer>
-</body>
+  </body>
 
-<script type="module" src="layout/index.js" defer></script>
-<script type="module" src="pages/liked-page.js"></script>
-
+<script type="module" src="/src/layout/index.js" defer></script>
+<script type="module" src="/src/pages/liked-page.js"></script>
 </html>
