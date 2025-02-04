@@ -26,15 +26,15 @@ class SectionExclusive extends HTMLElement {
   }
   
   updateCardSection = cardIDs => {
-    const cardSection = this.querySelector('card-section');
+    const cardSection = this.querySelector('card-section')
     if (cardSection) {
       cardSection.cardIDs = cardIDs
     }
   }
 
   loadData = async () => {
-    const recommendation = await this.fetchData();
-    if (recommendation) this.updateCardSection(recommendation)
+    const cardIDs = await this.fetchData();
+    if (cardIDs) this.updateCardSection(cardIDs)
   }
 
   render = () => {
@@ -44,12 +44,6 @@ class SectionExclusive extends HTMLElement {
       <card-section title="Video on Exclusive"></card-section> 
     </div>
     `
-
-    // css
-    const style = document.createElement('style')
-    style.innerHTML = /*css*/`
-    `
-    this.appendChild(style)
   }
 }
 

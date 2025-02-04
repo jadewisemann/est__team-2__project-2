@@ -22,7 +22,7 @@ class CardSection extends HTMLElement {
     this._cardIDs = value
     this.render()
   }
-  
+
   //* methods
   fetchData = async () => {
     try {
@@ -34,10 +34,17 @@ class CardSection extends HTMLElement {
       return []
     }
   }
-  
+  // map 어레이 순회
+  // Arr.map( element => 원소가 몇번째 인지 알고 싶어)
+  // Arr.map((element, index) => 원소가 몇번째 인지 알고 싶어)
+    // index  = arr이 순회에서의 인덱스를 반환함
+  // obj in arr
+  // Arr.map(obj=>)
+  // Arr.map(({ key })=>)
+
+  // for (let i, )  
   getMovieCards = async (uniqueId, isSectionRanked="", isHorizontal="") => {
     const cardMovieDetails = await this.fetchData();
-    // console.log(cardMovieDetails)
     return cardMovieDetails.map((detail, index) => /*html*/`
       <movie-card
         title="${detail.Title}"  

@@ -6,7 +6,7 @@ const queryString = window.location.search
 const params = new URLSearchParams(queryString)
 const imdb_id = params.get('id'); //페이지 연결할때 살리기
 
-async function initializeDtailTextbox() {
+export async function initializeDetailTextbox() {
     // const imdb_id = 'tt2294629'// imdb_id_dummy
     
     if (imdb_id) {
@@ -40,5 +40,4 @@ async function initializeDtailTextbox() {
         throw new Error('IMDb ID가 URL에 없습니다!') // 오류를 발생시켜 상위 호출로 전달
     }
 }
-// initializeDtailTextbox()
-export { initializeDtailTextbox }
+// initializeDetailTextbox()
