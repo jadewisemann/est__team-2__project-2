@@ -109,7 +109,7 @@
   - [x] 검색 결과 페이지에서 영화 목록 출력
   - [x] 영화목록에서 각 영화의 상세 페이지 구성
     - [x] 제목, 개봉연도, 평점, 장르, 감독, 배우, 줄거리, 포스터 ...
-  - [ ] 검색 사이트를 배포 ('Vercel' or 'Netlify')
+  - [x] 검색 사이트를 배포 ('Vercel' or 'Netlify')
 
 ### 선택 기능
 
@@ -120,9 +120,9 @@
   - [ ] 로딩 애니메이션
     - [ ] 초기 로딩
     - [ ] 검색 중 
-  - [ ] 포스터가 없을 경우 대체 이미지
-  - [ ] 상세정보를 고해상도로 출력
-  - [ ] 영화와 관련된 기타 기능
+  - [x] 포스터가 없을 경우 대체 이미지
+  - [x] 상세정보를 고해상도로 출력
+  - [x] 영화와 관련된 기타 기능
 
 ### 추가 기능
 
@@ -136,22 +136,42 @@
 
 ```mermaid
 flowchart TD
-  A[main-page]
-  B(('search'))
-  C(('popular'))
-  D((''now playing'))
+    %% 사용자와 UI 상호작용
+    subgraph main page
+    U[User] -->|클릭: 검색 버튼| SB[검색 버튼]
+    U -->|클릭: 좋아요 버튼|tt
+    U -->|클릭: 영화버튼| mmc
+    mmc[영화카드]
+    subgraph #header
+    SB --> SI[검색 입력 노출]
+    tt[좋아요]
+    end
 
-  A ==> B
-  A ==> C
-  A ==> D
-  
-  E[search-result]
-  B ==> |URL?s=title| E
+    end
+    subgraph search result
+    SI -->|입력: 검색어| SR[검색 요청]
+    SR -->|응답| MC[영화 카드 목록 표시]
+    end
 
- F[movie-detail]
-  C ==> |URL?i=imdbID| F
-  D ==> |URL?i=imdbID| F
-  E ==> |URL?i=imdbID| F
+
+
+    subgraph IndexedDB
+    MC -->|클릭: 좋아요 버튼| LDB[liked movies]
+    end
+
+    LDB -->|데이터 전달| LP
+    tt -->|진입: 좋아요 페이지| LP
+
+    subgraph liked movie page
+    LP[좋아요 목록 조회] --> |데이터 전달| rendering
+    end
+
+    %% 영화 상세정보 요청
+    subgraph movie detail page
+    mmc --> |선택: 영화카드| MD
+    MC -->|선택: 영화 카드| MD[영화 상세 정보 요청]
+    MD -->|데이터 수신| RD[상세 정보 렌더링]
+    end
 ```
 
 ## 프로젝트 구조
