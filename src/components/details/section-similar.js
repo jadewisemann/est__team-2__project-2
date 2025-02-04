@@ -18,30 +18,30 @@ class SectionSimilar extends HTMLElement {
       const response = await fetch("/asset/data/data.json")
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
       const data = await response.json()
-      return data.recommendation
+      return data.similar
     } catch (error) {
       console.error(error)
       return null
     }
   }
   
-  updateCardSection = recommendation => {
+  updateCardSection = similar => {
     const cardSection = this.querySelector('card-section');
     if (cardSection) {
-      cardSection.cardIDs = recommendation
+      cardSection.cardIDs = similar
     }
   }
 
   loadData = async () => {
-    const recommendation = await this.fetchData();
-    if (recommendation) this.updateCardSection(recommendation)
+    const similar = await this.fetchData();
+    if (similar) this.updateCardSection(similar)
   }
 
   render = () => {
     // html
     this.innerHTML = /*html*/ `
-    <div class="section--recommendation">
-      <card-section title="Similar movie recommendations"></card-section> 
+    <div class="section--similar">
+      <card-section title="Similar movie similars"></card-section> 
     </div>
     `
 
