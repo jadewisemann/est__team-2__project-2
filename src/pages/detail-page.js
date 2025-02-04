@@ -19,6 +19,9 @@ class DetailsPage extends HTMLElement {
     try {
       const { omdbDatas, tmdbDatas } = await initializeDetailTextbox()
         
+      // console.log('omdbDatas:', omdbDatas);
+      // console.log('tmdbDatas:', tmdbDatas);
+
       // Omdb data
       const { Language, Genre, Director, Country } = omdbDatas
       const language = Language ? Language.split(', ') : []

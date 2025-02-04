@@ -39,7 +39,7 @@ class DetailsPreview extends HTMLElement{
         // 관람가 이미지 설정
         
         const ageMapping ={
-            'N/A':'all', 'G':'all', 'PG':12, 'R': 15, 'NC-17':19
+            'N/A':19, 'G':'all', 'PG':12, 'PG-13':12, 'R': 15, 'NC-17':19, 'Unrated':19, 'Not Rated':19
         }
         const age = ageMapping[rated] || 'all'
         const ratedUrl =`../asset/img/element-icons-72-x-72-ic-movie-${age}-years.svg`

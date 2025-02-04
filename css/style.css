@@ -151,6 +151,20 @@ button:hover {
   transition: 0.3s;
 }
 
+.load-more__wrap {
+  width: 100%;
+  text-align: center;
+}
+.load-more__wrap .load-more {
+  color: #ffffff;
+  font-size: 1.6rem;
+  padding: 1.4rem 3.4rem;
+  background-color: #3887FF;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+
 .card {
   display: flex;
 }
@@ -193,7 +207,7 @@ button:hover {
 }
 .card__rating .rating li span {
   color: #ffffff;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   padding-left: 0.3rem;
 }
 
@@ -218,7 +232,8 @@ button:hover {
 }
 .card__person--img img {
   width: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   transform: translate(0, -13%);
 }
 
@@ -308,8 +323,10 @@ button:hover {
 .preview .preview__poster--bg img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center top;
+     object-position: center top;
 }
 
 h1,
@@ -354,7 +371,7 @@ span {
   display: inline-block;
   padding: 0.3rem 1.5rem;
   color: #ffffff;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 400;
   border: 1px solid #ffffff;
   border-radius: 0.5rem;
@@ -582,6 +599,7 @@ main-header {
   cursor: pointer;
   color: #ffffff;
   display: flex;
+  margin-right: 1rem;
 }
 
 .gnb--search {
@@ -631,7 +649,7 @@ main-header {
 
 footer {
   background-color: #000000;
-  padding: 2.7rem 10rem 10rem;
+  padding: 2.7rem 15rem 10rem;
   color: #717171;
   border-top: 1px solid #2f2f2f;
   font-size: 1.3rem;
@@ -664,7 +682,8 @@ footer div a:hover {
 .movie-box .movie-card img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .movie-box .movie-card img:hover {
   cursor: pointer;
