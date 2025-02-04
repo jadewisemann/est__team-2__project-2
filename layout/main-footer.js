@@ -1,3 +1,4 @@
+import '../components/btn-top.js'
 class MainFooter extends HTMLElement{
     constructor(parameters) {
         super()
@@ -19,6 +20,7 @@ class MainFooter extends HTMLElement{
                 Copyright© Content Video Co., Ltd. All rights reserved.
             </div>
         </footer>
+        <btn-top></btn-top>
         `
     }
 }

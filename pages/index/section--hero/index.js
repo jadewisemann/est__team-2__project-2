@@ -52,7 +52,7 @@ class SectionHero extends HTMLElement {
     style.innerHTML = /*css*/`
     .section--hero {
       width: 100vw;
-      height: 100vh;
+      height: 92vh;
     }
     `
     this.appendChild(style)
