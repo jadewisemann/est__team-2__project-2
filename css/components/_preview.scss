@@ -1,10 +1,10 @@
 @use '../abstract/variables' as *;
 .preview{
     width: 100%;
-    padding: 10rem;
+    padding: 15rem;
     display: flex;
     // gap: 10.4167vw;
-    gap: 20vw;
+    gap: 17vw;
     background-color: $color-gray5;
     position: relative;
     div{

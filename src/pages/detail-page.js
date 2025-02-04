@@ -9,7 +9,7 @@ class DetailsPage extends HTMLElement {
     super()
   }
 
-  async connectedCallback(){
+ async connectedCallback(){
     this.render()
   }
   
