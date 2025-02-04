@@ -28,17 +28,6 @@ class DetailsPage extends HTMLElement {
         : []
       const country = director.map(item =>item.country)
       
-      // Tmdb data 
-
-      // const popularCrew = cast.filter(({ popularity }) => popularity >= 15)
-      // const [castJob, castName, castImgUrl] = ["job", "name", "profile_path"].map(key =>
-      //   popularCrew.map(person => person[key])
-      // )
-
-      // const directors = crew.filter(({ job }) => job === "Director")
-      // const [crewName, crewImgUrl ] = ["name", "profile_path"].map(key =>
-      //   directors.map(person => person[key])
-      // )
       
       const { cast, crew } = tmdbDatas
 
@@ -55,13 +44,7 @@ class DetailsPage extends HTMLElement {
               acc.crewImgUrl.push(profile_path)
 
             return acc
-          }, {
-            castJob: [],
-            castName: [],
-            castImgUrl: [],
-            crewName: [],
-            crewImgUrl: []    
-          }
+          }, { castJob: [], castName: [], castImgUrl: [], crewName: [], crewImgUrl: []}
         )
 
       
