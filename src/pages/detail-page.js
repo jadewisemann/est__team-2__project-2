@@ -13,8 +13,8 @@ class DetailsPage extends HTMLElement {
         this.classList.add('wrap__movie-details'); // 기본적인 초기 설정만 처리
         try {
             const {omdbDatas,tmdbDatas} = await initializeDtailTextbox()
-            // console.log('omdbDatas:', omdbDatas);
-            // console.log('tmdbDatas:', tmdbDatas);
+            console.log('omdbDatas:', omdbDatas);
+            console.log('tmdbDatas:', tmdbDatas);
             
             /* Omdb data 정리 */
             const {Language, Genre, Director, Country} = omdbDatas

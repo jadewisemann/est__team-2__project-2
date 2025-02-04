@@ -2,7 +2,7 @@
 import '../../components/card-section.js'
 
 // define custom element
-class SectionExclusive extends HTMLElement {
+class SectionSimilar extends HTMLElement {
   constructor() {
     super()
     this.data = null
@@ -16,19 +16,19 @@ class SectionExclusive extends HTMLElement {
   fetchData = async () => {
     try {
       const response = await fetch("/asset/data/data.json")
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`) 
+      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
       const data = await response.json()
-      return data.exclusive
+      return data.recommendation
     } catch (error) {
       console.error(error)
       return null
     }
   }
   
-  updateCardSection = cardIDs => {
+  updateCardSection = recommendation => {
     const cardSection = this.querySelector('card-section');
     if (cardSection) {
-      cardSection.cardIDs = cardIDs
+      cardSection.cardIDs = recommendation
     }
   }
 
@@ -40,8 +40,8 @@ class SectionExclusive extends HTMLElement {
   render = () => {
     // html
     this.innerHTML = /*html*/ `
-    <div class="section--popular">
-      <card-section title="Video on Exclusive"></card-section> 
+    <div class="section--recommendation">
+      <card-section title="Similar movie recommendations"></card-section> 
     </div>
     `
 
@@ -53,4 +53,4 @@ class SectionExclusive extends HTMLElement {
   }
 }
 
-customElements.define('section--exclusive', SectionExclusive);
+customElements.define('section--similar', SectionSimilar);

@@ -262,9 +262,9 @@ button:hover {
 
 .preview {
   width: 100%;
-  padding: 10rem;
+  padding: 15rem;
   display: flex;
-  gap: 20vw;
+  gap: 17vw;
   background-color: #141414;
   position: relative;
 }
@@ -378,7 +378,6 @@ span {
 }
 
 .textbox p {
-  text-align: center;
   color: #999999;
   font-size: 2.4rem;
 }
@@ -409,7 +408,7 @@ span {
 
 .card-section {
   width: 83vw;
-  margin: 0 auto 100px;
+  margin: 0 auto 15rem;
 }
 
 .card-section__title {
@@ -644,7 +643,7 @@ footer div a:hover {
 
 .movie-result {
   background-color: #000000;
-  padding: 4.69rem 9.69rem 9.69rem;
+  padding: 4.69rem 15rem 9.69rem;
 }
 
 .search-result {
@@ -678,7 +677,7 @@ footer div a:hover {
 
 .wrap__movie-details .textbox {
   display: block;
-  padding: 4.5rem 10rem;
+  padding: 4.5rem 15rem;
 }
 
 .swiper {
