@@ -1,164 +1,174 @@
-import '../components/movie-card.js'
+import '../components/movie-card.js';
 
 document.addEventListener("DOMContentLoaded", () => {
-  //변수 설정 및 url/ key
+  initMovieLoader();
+});
+
+const loadMore = document.querySelector('.load-more');
+
+let currentPage = 1;
+let searchTerm = '';
+let genreId = '';
+let currentMovies = [];
+
+const TMDB_API_KEY = "d5e4a2eb5fb264de1583b6945d203546";
+const OMDB_API_URL = "http://www.omdbapi.com/?apikey=33c97183";
+
+const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${TMDB_API_KEY}`,
+  },
+};
+
+function getQueryParam(param) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(param);
+}
+
+const showLoading = (container) => {
+  const loadingEl = document.createElement("div");
+  loadingEl.id = "loading-indicator";
+  loadingEl.textContent = "Loading...";
+  container.appendChild(loadingEl);
+};
+
+const hideLoading = () => {
+  const loadingEl = document.getElementById("loading-indicator");
+  if (loadingEl) loadingEl.remove();
+};
+
+function initMovieLoader() {
   const movieContainer = document.querySelector(".search-result");
   const textSearch = document.querySelector(".text--search");
-  const TMDB_API_KEY = "d5e4a2eb5fb264de1583b6945d203546";
-  const OMDB_API_URL = "http://www.omdbapi.com/?apikey=33c97183";
-  let currentMovies = [];
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${TMDB_API_KEY}`,
-    },
-  };
-  const searchTerm = getQueryParam("title");
-  const genreId = getQueryParam("genre");
 
-  //   // URL 파라미터 가져오기 및 값에 따른 tmdb / omdb 활용
-  function getQueryParam(param) {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get(param);
-  }
+  searchTerm = getQueryParam("title");
+  genreId = getQueryParam("genre");
+
+  currentPage = 1;
+
   if (searchTerm) {
-    getMoviesInfo(searchTerm);
+    movieContainer.innerHTML = "";
+    showLoading(movieContainer);
+    getMoviesInfo(searchTerm, "", currentPage, movieContainer, textSearch);
   } else if (genreId) {
-    fetchMovieDataByGenre(genreId);
-  }
-
-  // tmdb 가져오기
-  async function fetchMovieDataByGenre(genreId) {
-    try {
-      movieContainer.innerHTML = '<h2 class="text--search">Loading...</h2>';
-      const response = await fetch(
-        `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genreId}&language=en-US&page=1`,
-        options
-      );
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.json();
-      currentMovies = data.results;
-      displayMoviesFromTmdb(currentMovies);
-    } catch (error) {
-      console.error("Error fetching movie data:", error);
-
-      movieContainer.innerHTML =
-        '<h2 class="text--search">Movie Not Found</h2>';
-    }
-  }
-
-  // tbdb id값 imdb id로 변환
-  async function getImdbIdFromTmdbId(tmdbID) {
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/movie/${tmdbID}?api_key=${TMDB_API_KEY}&append_to_response=external_ids`
-      );
-
-      if (!response.ok) {
-        throw new Error(`API fales: ${response.status}`);
-      }
-
-      const data = await response.json();
-      return data.external_ids.imdb_id || null;
-    } catch (error) {
-      console.error("error:", error.message);
-      return null;
-    }
-  }
-
-  // tmdb 무비 포스터 구현
-  async function displayMoviesFromTmdb(movies) {
     movieContainer.innerHTML = "";
-    textSearch.innerHTML = `Program <span>${movies.length}</span>`;
-
-    if (movies.length === 0) {
-      movieContainer.innerHTML =
-        '<h2 class="text__search">Movie Not Found </h2>';
-      return;
-    }
-
-    movies.forEach(async (movie) => {
-      const imdbID = await getImdbIdFromTmdbId(movie.id);
-      const movieBox = document.createElement("div");
-
-      if (movie) {
-        
-        console.log(movie)
-
-        movieBox.classList.add("movie-box");
-        movieBox.innerHTML  = /*html*/`
-          <movie-card
-            title= '${movie.original_title}'
-            imdb-id= '${imdbID}'
-            poster= 'https://image.tmdb.org/t/p/original/${movie.poster_path}'
-            alt= '${movie.original_title}'
-          ></movie-card>
-        `
-        movieContainer.appendChild(movieBox);
-      }
-    });
+    showLoading(movieContainer);
+    fetchMovieDataByGenre(genreId, currentPage, movieContainer, textSearch);
   }
+}
 
-  // omdb로 가져오기
-  async function getMoviesInfo(title, year = "") {
-    try {
-      movieContainer.innerHTML = '<h2 class="text__search">Loading...</h2>';
-      const pageRequests = [1, 2].map((page) =>
-        fetch(`${OMDB_API_URL}&s=${title}&y=${year}&page=${page}`).then((res) =>
-          res.json()
-        )
-      );
-
-      const results = await Promise.all(pageRequests);
-      const allMovies = results.flatMap((result) => result.Search || []);
-
-      if (allMovies.length > 0) {
-        currentMovies = allMovies;
-        displayMoviesFromOmdb(allMovies);
-      } else {
-        textSearch.innerHTML = `<h2 class="text__search">Movie Not Found </h2>`;
-        movieContainer.innerHTML = "";
-        searchInput.value = "";
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      movieContainer.innerHTML = `<h2 class="text__search">${error}</h2>`;
+async function fetchMovieDataByGenre(genreId, page = 1, movieContainer, textSearch) {
+  try {
+    if (page === 1) {
+      movieContainer.innerHTML = "";
+      showLoading(movieContainer);
     }
+    const response = await fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genreId}&language=en-US&page=${page}`,
+      options
+    );
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+    const data = await response.json();
+    hideLoading();
+
+    currentMovies = page === 1 ? data.results : [...currentMovies, ...data.results];
+    displayMoviesFromTmdb(data.results, movieContainer, textSearch);
+  } catch (error) {
+    hideLoading();
+    console.error("Error fetching movie data:", error);
+    movieContainer.innerHTML = '<h2 class="text--search">Movie Not Found</h2>';
   }
+}
 
-  // omdb포스터 구현
-  function displayMoviesFromOmdb(movies) {
-    movieContainer.innerHTML = "";
-
-    textSearch.innerHTML = `Program <span>${movies.length}</span>`;
-    if (movies.length === 0) {
-      movieContainer.innerHTML =
-        '<h2 class="text__search">Movie Not Found </h2>';
-      return;
+async function getMoviesInfo(title, year = "", page = 1, movieContainer, textSearch) {
+  try {
+    if (page === 1) {
+      movieContainer.innerHTML = "";
+      showLoading(movieContainer);
     }
+    const response = await fetch(`${OMDB_API_URL}&s=${title}&y=${year}&page=${page}`);
+    const data = await response.json();
+    hideLoading();
 
-    movies.forEach((movie) => {
-      const movieBox = document.createElement("div");
-      movieBox.classList.add("movie-box");
-
-      if (movie) {
-
-        movieBox.classList.add("movie-box");
-        movieBox.innerHTML  = /*html*/`
-          <movie-card
-            title= '${movie.Title}'
-            imdb-id= '${movie.imdbID}'
-            poster= '${movie.Poster}'
-            alt= '${movie.Title}'
-          ></movie-card>
-        `
-        movieContainer.appendChild(movieBox);
-      }
-
-      movieContainer.appendChild(movieBox);
-    });
+    const movies = data.Search || [];
+    if (movies.length > 0) {
+      currentMovies = page === 1 ? movies : [...currentMovies, ...movies];
+      displayMoviesFromOmdb(movies, movieContainer, textSearch);
+    } else if (page === 1) {
+      textSearch.innerHTML = `<h2 class="text--search">Movie Not Found</h2>`;
+      movieContainer.innerHTML = "";
+    }
+  } catch (error) {
+    hideLoading();
+    console.error("Error:", error);
+    movieContainer.innerHTML = `<h2 class="text--search">${error}</h2>`;
   }
+}
+
+function fetchMoreMovies() {
+  const movieContainer = document.querySelector(".search-result");
+  const textSearch = document.querySelector(".text--search");
+
+  currentPage++;
+  if (searchTerm) {
+    getMoviesInfo(searchTerm, "", currentPage, movieContainer, textSearch);
+  } else if (genreId) {
+    fetchMovieDataByGenre(genreId, currentPage, movieContainer, textSearch);
+  }
+}
+
+async function displayMoviesFromTmdb(movies, movieContainer, textSearch) {
+  textSearch.innerHTML = `Program <span>${currentMovies.length}</span>`;
+  movies.forEach(async (movie) => {
+    const imdbID = await getImdbIdFromTmdbId(movie.id);
+    const movieBox = document.createElement("div");
+    movieBox.classList.add("movie-box");
+    movieBox.innerHTML = /*html*/`
+      <movie-card
+        title='${movie.original_title}'
+        imdb-id='${imdbID}'
+        poster='https://image.tmdb.org/t/p/original/${movie.poster_path}'
+        alt='${movie.original_title}'
+      ></movie-card>
+    `;
+    movieContainer.appendChild(movieBox);
+  });
+}
+
+function displayMoviesFromOmdb(movies, movieContainer, textSearch) {
+  textSearch.innerHTML = `Program <span>${currentMovies.length}</span>`;
+  movies.forEach((movie) => {
+    const movieBox = document.createElement("div");
+    movieBox.classList.add("movie-box");
+    movieBox.innerHTML = /*html*/`
+      <movie-card
+        title='${movie.Title}'
+        imdb-id='${movie.imdbID}'
+        poster='${movie.Poster}'
+        alt='${movie.Title}'
+      ></movie-card>
+    `;
+    movieContainer.appendChild(movieBox);
+  });
+}
+
+async function getImdbIdFromTmdbId(tmdbID) {
+  try {
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${tmdbID}?api_key=${TMDB_API_KEY}&append_to_response=external_ids`
+    );
+    if (!response.ok) throw new Error(`API failed: ${response.status}`);
+    const data = await response.json();
+    return data.external_ids.imdb_id || null;
+  } catch (error) {
+    console.error("Error:", error.message);
+    return null;
+  }
+}
+
+loadMore.addEventListener('click', () => {
+  fetchMoreMovies();
 });
