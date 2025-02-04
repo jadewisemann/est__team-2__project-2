@@ -23,7 +23,7 @@ class DetailsTextbox extends HTMLElement {
     this._errorTimer = setTimeout(() => {
       if (!this.hasValidData()) {
         console.error('Error: No data attribute provided.')
-        this.innerHTML = '<p>Error: No data provided</p>'
+        this.innerHTML = '<p style="width: fit-content; margin: 0 auto;">Error: No data provided</p>'
       }
     }, 3000)
   }
