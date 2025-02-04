@@ -37,7 +37,7 @@ const showLoading = (container) => {
   const loadingEl = document.createElement("div");
   loadingEl.id = "loading-indicator";
   loadingEl.innerHTML = `<p>${loadingAnimation}</p>`
-  container.appendChild(loadingEl);
+  container.appendChild(loadingEl)
 }
 
 const hideLoading = () => {
