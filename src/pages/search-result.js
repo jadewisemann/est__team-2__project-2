@@ -34,6 +34,8 @@ function getQueryParam(param) {
 }
 
 const showLoading = (container) => {
+  if (document.getElementById("loading-indicator")) return;
+  
   const loadingEl = document.createElement("div");
   loadingEl.id = "loading-indicator";
   loadingEl.innerHTML = `<p>${loadingAnimation}</p>`
@@ -56,11 +58,11 @@ function initMovieLoader() {
 
   if (searchTerm) {
     movieContainer.innerHTML = "";
-    showLoading(movieContainer);
+    showLoading(textSearch);
     getMoviesInfo(searchTerm, "", currentPage, movieContainer, textSearch);
   } else if (genreId) {
     movieContainer.innerHTML = "";
-    showLoading(movieContainer);
+    showLoading(textSearch);
     fetchMovieDataByGenre(genreId, currentPage, movieContainer, textSearch);
   }
 }
@@ -69,7 +71,7 @@ async function fetchMovieDataByGenre(genreId, page = 1, movieContainer, textSear
   try {
     if (page === 1) {
       movieContainer.innerHTML = ""
-      showLoading(movieContainer)
+      showLoading(textSearch)
     }
     const response = await fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=${TMDB_API_KEY}&with_genres=${genreId}&language=en-US&page=${page}`,
@@ -93,7 +95,7 @@ async function getMoviesInfo(title, year = "", page = 1, movieContainer, textSea
   try {
     if (page === 1) {
       movieContainer.innerHTML = "";
-      showLoading(movieContainer);
+      showLoading(textSearch);
     }
     const response = await fetch(`${OMDB_API_URL}&s=${title}&y=${year}&page=${page}`);
     const data = await response.json();
