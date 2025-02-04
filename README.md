@@ -19,10 +19,11 @@
   <tr>
     <td colspan="2">
       <ul>
-        <li>기여 1
-        <li>기여 2
-        <li>기여 3
-        <li>기여 4
+        <li>프로젝트 목표 설정 및 진행 관리
+        <li>기획 및 전체 일정 관리
+        <li>디자인 및 와이어프레임 제작
+        <li>영화 정보 상세 페이지 개발
+        <li>공통 컴포넌트(swiper--over-ride ...) 제작 및 구현
       </ul>
     </td>
   </tr>
@@ -33,20 +34,14 @@
   <tr>
     <td colspan="2">
       <ul>
-        <li>기여 1
-        <li>기여 2
-        <li>기여 3
-        <li>기여 4
+        <li>공통 컴포넌트(main-header ...) 제작 및 구현
+        <li>검색 결과 페이지 개발
+        <li>tmdbAPI사용하여, 추가 검색 기능 개발
+        <li>tmdb API <=> imdb API 사이 핸들링 기능 구현
       </ul>
     </td>
   </tr>
-  <tr>
-    <td align="center"><a href="https://github.com/zeeeeeee0">장지영</a></td>
-    <td align="center">팀원</td>
-  </tr>
-  <tr>
-    <td colspan="2"></td>
-  </tr>
+  
   <tr>
     <td align="center"><a href="https://github.com/jadewisemann">정유진</a></td>
     <td align="center">팀원</td>
@@ -54,10 +49,13 @@
   <tr>
     <td colspan="2">
       <ul>
-        <li>기여 1
-        <li>기여 2
-        <li>기여 3
-        <li>기여 4
+        <li>형상 관리
+        <li>commit · coding convention 관리
+        <li>문서 관리
+        <li>배포 담당
+        <li>컴포넌트 로직 구현
+        <li>공통 컴포넌트(movie-card, card-section ...) 구현
+        <li>메인 페이지, 찜한 영화 페이지 개발
       </ul>
     </td>
   </tr>
@@ -83,6 +81,7 @@
 - html 5
 - vanilla `javaScript`
   - `Query String`
+  - 'indexedDB'
   - **MPA**
 - styling: `sass`
     
@@ -113,13 +112,14 @@
 
 ### 선택 기능
 
-  - [ ] 다보기로 영화 목록을 추가로 불러오기
-    - [ ] infinity scroll
+  - [x] 다보기로 영화 목록을 추가로 불러오기
+    - [ ] ~~infinity scroll~~
+      - omdb의 경우 초기값이 10개인데 환경에 따라 사용자의 의사와 반하게 동작할 가능성을 고려, 버튼으로 구현 
   - [ ] 상세 검색
     - [ ] 연도로 검색 + ...
-  - [ ] 로딩 애니메이션
+  - [x] 로딩 애니메이션
     - [ ] 초기 로딩
-    - [ ] 검색 중 
+    - [x] 검색 중 
   - [x] 포스터가 없을 경우 대체 이미지
   - [x] 상세정보를 고해상도로 출력
   - [x] 영화와 관련된 기타 기능
@@ -128,9 +128,21 @@
 
   - [ ] 매인 화면에 영화 정보를 하드 코딩하지 않기
     - [ ] 다른 api 사용
-  - [ ] ~~로그인 (oAuth w.Fire Base)~~
-  - [x] 관심 목록 (localStorage or indexed db)
+  - [ ] 로그인 (oAuth w.Fire Base)
+  - [x] 관심 목록 (localStorage or **indexed db**)
   - [ ] 메세지 및 언어 분리 ⇒ i18n 대응
+
+## 기능 구현 설명
+
+### js
+
+### style
+
+### 컨벤션
+
+### 프로젝트 관리
+
+
 
 ## 데이터 흐름
 
@@ -178,15 +190,28 @@ flowchart TD
 
 ```
 📦 root
-┣━ 📦 aseets          # 이미지, 폰트 등
+┣━ 📦 asset           # 이미지, 폰트 등
+┃   ┣━ 📦 data        # 더미 데이터
+┃   ┣━ 📦 font        # 폰트
+┃   ┣━ 📦 img         # 이미지 
+┃   ┣━ 📦 js          # static한 js
+┃   ┗━ 📦 ....
 ┣━ 📦 css             # 스타일
-┣━ 📦 docs            # 문서
-┣━ 📦 public          # 정적인 html 파일
+┃   ┣━ 📦 abstract    # 변수, @mix-in ...
+┃   ┣━ 📦 components  # 컴포넌트 
+┃   ┣━ 📦 config      # 설정(rem ...)
+┃   ┣━ 📦 layout      # 공통 페이지 구성 요소 
+┃   ┣━ 📦 pages       # 페이지 종속적 스타일
+┃   ┣━ 📦 vendor      # 벤더 프리픽스
+┃   ┗━ 📜 style.css   # 최종 컴파일 css
+┣━ 📦 docs            # 문서 (컨벤션 및 컴포넌트, api 예제)
+┣━ 📦 public          # 배포될 html 파일
 ┃   ┣━ 📜 index.html
 ┃   ┣━ 📜 search-result.html
 ┃   ┗━ 📜 ....
 ┗━ 📦 src            # 소스코드
     ┣━ 📦 components # 컴포넌트
+    ┣━ 📦 layout     # 공통 페이지 구성 요소소
     ┣━ 📦 pages      # 페이지별 js 로직
     ┗━ 📦 utils      # 유틸 함수
 ```
