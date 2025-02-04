@@ -705,10 +705,6 @@ footer div a:hover {
   transform: translateX(-50%);
 }
 
-.text--search {
-  text-align: center;
-}
-
 .wrap__movie-details .textbox {
   display: block;
   padding: 4.5rem 15rem;
