@@ -132,7 +132,7 @@
   - [x] 관심 목록 (localStorage or **indexed db**)
   - [ ] 메세지 및 언어 분리 ⇒ i18n 대응
 
-## 기능 구현 설명
+## 기능 구현 설명 (추후 추가 예정)
 
 ### js
 
@@ -142,7 +142,10 @@
 
 ### 프로젝트 관리
 
+## 링크
 
+![qr](docs/qr.png)
+or [click](https://m.site.naver.com/1Bu3W)
 
 ## 데이터 흐름
 
