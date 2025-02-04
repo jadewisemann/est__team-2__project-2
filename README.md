@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">VideOn</h1>
+  <h1 align="center">videOn</h1>
   <h4 align="center">movie information site with pure vanila js</h4>
 </p>
 
